@@ -1,4 +1,4 @@
-from fastapi import Depends, FastAPI, HTTPException, status,UploadFile
+from fastapi import Depends, FastAPI, HTTPException, status,UploadFile, Response
 from fastapi.encoders import jsonable_encoder
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
@@ -8,6 +8,7 @@ import models
 from database import engine, SessionLocal
 from sqlalchemy.orm import Session
 import json
+from helpers import convert_to_json 
 
 #BaseModels
 class RegisterBase(BaseModel):
@@ -58,7 +59,7 @@ async def root():
 
 
 #Register route
-@app.post("/register")
+@app.post("/register/")
 async def register(data: RegisterBase, db: db_dependency):
     new_user_data = models.User(**data.model_dump())
     new_user_email = db.query(models.User).filter(models.User.email == data.email).first()
@@ -76,7 +77,7 @@ async def register(data: RegisterBase, db: db_dependency):
 
 
 #Login route
-@app.post("/login")
+@app.post("/login/")
 async def login(data: LoginBase, db: db_dependency):
     login_user = db.query(models.User).filter(models.User.email == data.email).first()
     if login_user == None:
@@ -87,3 +88,75 @@ async def login(data: LoginBase, db: db_dependency):
         return {"status":"Fail", "msg":"Wrong password entered. Click on forgot password to change your password"}
 
         
+# SHow all users
+@app.get("/users/")
+async def show_all_users(db: db_dependency):
+    all_users = db.query(models.User).all()
+    return {"status":"Success", "msg":"All users list", "data": all_users}
+
+
+# Get user with USER_ID
+@app.get('/users/{user_id}')
+async def read_user(user_id: int, db: db_dependency):
+    user = db.query(models.User).filter(models.User.id == user_id).first()
+    if user is None:
+        return {"status":"Fail", "msg":f"User with user_id {user_id} does not exist"}
+    return {"status":"Success", "msg":f'User with user_id {user_id} fetched successfully', "data": user}
+
+#File upload
+@app.post("/upload/{user_id}")
+async def file_upload(file: UploadFile, user_id: int, db: db_dependency):
+    user = db.query(models.User).filter(models.User.id == user_id).first()
+    if user:
+        json_content =  convert_to_json(file)
+        #Create new file and store in DB
+        new_file = models.File(name=file.filename, user_id=user_id, content=json_content)
+        db.add(new_file)
+        db.commit()
+        print(type(json_content))
+        print(json_content)
+        return {"status":"Sucess", "msg":f"File {file.filename} uploaded successfully by user with id = {user_id}"}
+    else:
+        return {"status":"Fail", "msg":f"User with user id = {user_id} does not exist"}
+
+    
+         
+#Files of a User
+@app.get("/{user_id}/files")
+async def get_files_of_user(user_id: int, db: db_dependency):
+    files_list = db.query(models.File).filter(models.File.user_id == user_id).all()
+   
+    json_str = '['
+
+    for x in files_list:         
+        json_str += f'{{"Filename":"{x.name}", "id":{x.id}}},'
+
+    json_str += ']'
+  
+    return Response(json_str)
+
+#File iwth file id
+@app.get("/file/{file_id}")
+async def get_file(file_id: int, db: db_dependency):
+    file = db.query(models.File).filter(models.File.id == file_id).first()
+    print(type(file))
+    print(file)
+    return Response(file.content)
+
+
+#Delete file with file_id
+@app.post("/delete/{file_id}")
+async def delete_file(file_id: int, db: db_dependency):
+    file = db.query(models.File).filter(models.File.id == file_id).first()
+
+    if file:
+        db.delete(file)
+        db.commit()
+
+        return {"status":"Success", "msg":f"File with id = {file_id} deleted successfully"}
+    return {"status":"Fail", "msg":f"File with id = {file_id} does not exist"}
+     
+
+
+    
+    

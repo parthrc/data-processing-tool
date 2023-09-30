@@ -26,7 +26,7 @@ class File(Base):
     id = mapped_column(Integer, primary_key=True, index=True)
     name = mapped_column(String(50))
     user_id = mapped_column(Integer, ForeignKey("user.id"))
-    content = mapped_column(JSON)
+    content = mapped_column(Text)
 
     user = relationship("User", backref="file")
 
