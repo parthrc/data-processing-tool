@@ -1,9 +1,7 @@
+import Homepage from "./Pages/Homepage/Homepage";
+
 function App() {
-  return (
-    <>
-      <p>Click on the Vite and React logos to learn more</p>
-    </>
-  );
+  return <Homepage />;
 }
 
 export default App;

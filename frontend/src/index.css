@@ -1,0 +1,19 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  font-family: "Oswald", sans-serif;
+}
+
+:root {
+  --main: #205bfc;
+  --main-dark: #5320fc;
+  --main-light: #20c9fc;
+
+  --yellow: #fcc120;
+
+  --text-dark: #121212;
+  --text-light: whitesmoke;
+
+  --main-bg-light: #e4ebff;
+}
