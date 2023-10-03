@@ -1,6 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import styles from "./Homepage.module.css";
 
 function Homepage() {
+  const navigate = useNavigate();
+
   return (
     <div className={styles.main}>
       <div className={styles.titleContainer}>
@@ -18,8 +21,8 @@ function Homepage() {
         </p>
       </div>
       <div className={styles.btnContainer}>
-        <button>Register</button>
-        <button>Login</button>
+        <button onClick={() => navigate("register")}>Register</button>
+        <button onClick={() => navigate("login")}>Login</button>
       </div>
     </div>
   );
