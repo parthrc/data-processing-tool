@@ -1,10 +1,15 @@
 import { useState } from "react";
 import styles from "./RegisterPage.module.css";
 import { useUsers } from "../../Context/UserContext";
+import Modal from "../../Components/Modal/Modal";
+import Spinner from "../../Components/Spinner/Spinner";
+import { useNavigate } from "react-router-dom";
 
 function RegisterPage() {
   //Context
   const { registerUser, isLoading } = useUsers();
+
+  const navigate = useNavigate();
 
   //Constants
   const SECURITY_QUESTIONS = [
@@ -20,7 +25,7 @@ function RegisterPage() {
   const [username, setUsername] = useState("");
   const [pw1, setPw1] = useState("");
   const [pw2, setPw2] = useState("");
-  const [securityQ, setSecurityQ] = useState("What is your pet's name?");
+  const [securityQ, setSecurityQ] = useState(SECURITY_QUESTIONS[0]);
   const [securityAns, setSecurityAns] = useState("");
 
   const newUser = {
@@ -31,18 +36,35 @@ function RegisterPage() {
     security_answer: securityAns,
   };
 
+  //Reset form
+  function resetForm() {
+    setEmail("");
+    setUsername("");
+    setPw1("");
+    setPw2("");
+    setSecurityQ(SECURITY_QUESTIONS[0]);
+    setSecurityAns("");
+  }
+
   //Register handler
-  function handleRegister(e) {
+  async function handleRegister(e) {
     e.preventDefault();
-    console.log("register", newUser);
-    registerUser(newUser);
+
+    const res = await registerUser(newUser);
+
+    if (res.Status == "Success") {
+      alert("User registered successfully. Please login now");
+      return navigate("/login");
+    }
+    resetForm();
+    alert(res.msg);
   }
 
   return (
     <div className={styles.main}>
       <div className={styles.container}>
         <form className={styles.form}>
-          <div>
+          <div className={styles.inputGroup}>
             <label htmlFor="email-input">Email:</label>
             <input
               type="text"
@@ -50,7 +72,7 @@ function RegisterPage() {
               onChange={(e) => setEmail(e.target.value)}
             ></input>
           </div>
-          <div>
+          <div className={styles.inputGroup}>
             <label htmlFor="username-input">Username:</label>
             <input
               type="text"
@@ -58,29 +80,30 @@ function RegisterPage() {
               onChange={(e) => setUsername(e.target.value)}
             ></input>
           </div>
-          <div>
+          <div className={styles.inputGroup}>
             <label htmlFor="pw1-input">Enter password:</label>
             <input
-              type="text"
+              type="password"
               value={pw1}
               onChange={(e) => setPw1(e.target.value)}
             ></input>
           </div>
-          <div>
+          <div className={styles.inputGroup}>
             <label htmlFor="pw2-input">Enter password again:</label>
             <input
-              type="text"
+              type="password"
               value={pw2}
               onChange={(e) => setPw2(e.target.value)}
             ></input>
           </div>
-          <div>
+          <div className={styles.inputGroup}>
             <label htmlFor="securtity-question-input">
               Choose security question:
             </label>
             <select
               name="security-questions"
               onChange={(e) => setSecurityQ(e.target.value)}
+              className={styles.inputGroup}
             >
               <option value={SECURITY_QUESTIONS[0]}>
                 {SECURITY_QUESTIONS[0]}
@@ -98,7 +121,7 @@ function RegisterPage() {
                 {SECURITY_QUESTIONS[4]}
               </option>
             </select>
-            <div>
+            <div className={styles.inputGroup}>
               <label htmlFor="answer-input">
                 Enter Answer for security question:
               </label>
@@ -109,7 +132,15 @@ function RegisterPage() {
               ></input>
             </div>
           </div>
-          <button onClick={handleRegister}>Register</button>
+          <div className={styles.btnContainer}>
+            <button onClick={handleRegister} id={styles.btn}>
+              Register
+            </button>
+            <p>
+              Already registered?
+              <a href="/login"> Login now</a>
+            </p>
+          </div>
         </form>
       </div>
     </div>

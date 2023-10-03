@@ -83,7 +83,7 @@ async def login(data: LoginBase, db: db_dependency):
     if login_user == None:
         return {"status":"Fail", "msg":"Email does not exist"}
     elif login_user.password == data.password:
-        return {"status":"Success", "msg":"User login sucessfull", "data": {"user_id": login_user.id}}
+        return {"status":"Success", "msg":"User login successful", "data": {"user_id": login_user.id}}
     else:
         return {"status":"Fail", "msg":"Wrong password entered. Click on forgot password to change your password"}
 
