@@ -5,8 +5,13 @@ import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
   //Context
-  const { loginUser, isLoading, loggedInUserId, setLoggedInUserId } =
-    useUsers();
+  const {
+    loginUser,
+    isLoading,
+    loggedInUserId,
+    setLoggedInUserId,
+    setLoggedInUsername,
+  } = useUsers();
 
   const navigate = useNavigate();
 
@@ -38,20 +43,13 @@ function LoginPage() {
     if (res.status == "Success") {
       console.log(res.data.user_id);
       setLoggedInUserId(res.data.user_id);
+      setLoggedInUsername(res.data.name);
       alert("User login success. Redirecting to the dashboard");
       return navigate("/dashboard");
     }
     resetForm();
     alert(res.msg);
   }
-
-  useEffect(
-    function () {
-      console.log(loggedInUserId.length);
-      if (loggedInUserId !== "") return navigate("/dashboard");
-    },
-    [loggedInUserId]
-  );
 
   return (
     <div className={styles.main}>

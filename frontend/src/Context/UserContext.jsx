@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useContext } from "react";
 import { createContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 //Create the context
 const UserContext = createContext();
@@ -8,11 +9,24 @@ const UserContext = createContext();
 //Proivder function
 function UserProvider({ children }) {
   //States
-  const [loggedInUserId, setLoggedInUserId] = useState("");
+  const loggedInUserId = localStorage.getItem("loggedInUserId") || "0";
+  const loggedInUsername = localStorage.getItem("loggedInUsername") || "";
   const [isLoading, setIsLoading] = useState(false);
 
   //Constants
   const BASE_URL = "http://localhost:8000";
+
+  //Function to store logged in User_id in localstorage
+  function setLoggedInUserId(user_id) {
+    localStorage.setItem("loggedInUserId", user_id);
+  }
+  function setLoggedInUsername(user_name) {
+    localStorage.setItem("loggedInUsername", user_name);
+  }
+  //Logout function
+  function logout() {
+    localStorage.setItem("loggedInUserId", "0");
+  }
 
   //Register function
   async function registerUser(newUser) {
@@ -69,6 +83,9 @@ function UserProvider({ children }) {
         loginUser,
         loggedInUserId,
         setLoggedInUserId,
+        logout,
+        setLoggedInUsername,
+        loggedInUsername,
       }}
     >
       {children}
