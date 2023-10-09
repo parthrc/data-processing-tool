@@ -1,0 +1,36 @@
+.container {
+  background-color: var(--main-light);
+  height: 80vh;
+  width: 60%;
+  margin-left: 40px;
+  padding-inline: 20px;
+  margin-top: 40px;
+  overflow-y: auto;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.itemC {
+  margin-block: 10px;
+  padding: 10px;
+  background-color: var(--text-light);
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-inline: 30px;
+
+  font-size: 1.5rem;
+}
+
+.itemC button {
+  padding: 10px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  background-color: green;
+  color: white;
+}

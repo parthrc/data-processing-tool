@@ -81,7 +81,7 @@ function LoginPage() {
               <a href="/register"> Register now</a>
               <br />
               Forgot password?
-              <a href="/register"> Reset now</a>
+              <a href="/reset"> Reset now</a>
             </p>
           </div>
         </form>

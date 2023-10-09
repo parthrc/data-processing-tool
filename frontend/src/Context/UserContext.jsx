@@ -75,6 +75,23 @@ function UserProvider({ children }) {
     }
   }
 
+  //Check if email exist
+  async function checkEmail(emaill) {
+    try {
+      setIsLoading(true);
+      const res = await fetch(`${BASE_URL}/users/email/${emaill}/`);
+      console.log(`${BASE_URL}/users/email/${emaill}`);
+      console.log(res);
+      const data = await res.json();
+      console.log(data);
+      return data;
+    } catch {
+      alert("Error occured while logging in");
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
   return (
     <UserContext.Provider
       value={{
@@ -86,6 +103,7 @@ function UserProvider({ children }) {
         logout,
         setLoggedInUsername,
         loggedInUsername,
+        checkEmail,
       }}
     >
       {children}

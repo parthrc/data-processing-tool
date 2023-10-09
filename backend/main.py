@@ -103,6 +103,14 @@ async def read_user(user_id: int, db: db_dependency):
         return {"status":"Fail", "msg":f"User with user_id {user_id} does not exist"}
     return {"status":"Success", "msg":f'User with user_id {user_id} fetched successfully', "data": user}
 
+# Get user with EMail
+@app.get('/users/email/{email}')
+async def read_user_email(email: str, db: db_dependency):
+    user = db.query(models.User).filter(models.User.email == email).first()
+    if user is None:
+        return {"status":"Fail", "msg":f"User with email {email} does not exist"}
+    return {"status":"Success", "msg":f'User with email {email} fetched successfully', "data": user}
+
 #File upload
 @app.post("/upload/{user_id}")
 async def file_upload(file: UploadFile, user_id: int, db: db_dependency):
@@ -115,7 +123,7 @@ async def file_upload(file: UploadFile, user_id: int, db: db_dependency):
         db.commit()
         print(type(json_content))
         print(json_content)
-        return {"status":"Sucess", "msg":f"File {file.filename} uploaded successfully by user with id = {user_id}"}
+        return {"status":"Success", "msg":f"File {file.filename} uploaded successfully by user with id = {user_id}"}
     else:
         return {"status":"Fail", "msg":f"User with user id = {user_id} does not exist"}
 
@@ -133,9 +141,9 @@ async def get_files_of_user(user_id: int, db: db_dependency):
         json_str += f'{{"Filename":"{x.name}", "id":{x.id}}},'
 
     json_str += ']'
-    
+    final_str = json_str[:-2] + json_str[-1]
     #We use custom FastAPI Response object to stop auto serializing of data by FastAPI
-    return Response(json_str)
+    return Response(final_str)
 
 #File iwth file id
 @app.get("/file/{file_id}")
