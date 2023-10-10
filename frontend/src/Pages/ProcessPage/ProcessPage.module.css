@@ -1,0 +1,21 @@
+.tableContainer {
+  width: 80%;
+}
+
+table {
+  width: 80%;
+  height: 500px;
+  background-color: red;
+}
+
+tbody {
+  background-color: green;
+}
+
+tr {
+  background-color: blue;
+}
+
+td {
+  background-color: aqua;
+}

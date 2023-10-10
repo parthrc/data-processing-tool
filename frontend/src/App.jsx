@@ -6,6 +6,7 @@ import { UserProvider } from "./Context/UserContext";
 import DashboardPage from "./Pages/DashboardPage/DashboardPage";
 import ResetPassPage from "./Pages/ResetPassPage/ResetPassPage";
 import { FileProvider } from "./Context/FileContext";
+import ProcessPage from "./Pages/ProcessPage/ProcessPage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="register" element={<RegisterPage />} />
             <Route path="dashboard" element={<DashboardPage />} />
             <Route path="reset" element={<ResetPassPage />} />
+            <Route path="process" element={<ProcessPage />} />
           </Routes>
         </BrowserRouter>
       </UserProvider>

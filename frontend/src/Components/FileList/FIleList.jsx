@@ -2,22 +2,29 @@ import { useState } from "react";
 import styles from "./FIleList.module.css";
 import { useEffect } from "react";
 import { useFiles } from "../../Context/FileContext";
+import { useNavigate } from "react-router-dom";
 
 function FIleList() {
-  const { fetchAllFiles } = useFiles();
+  const { fetchAllFiles, setCurrentFile } = useFiles();
 
   const [allFiles, setAllFiles] = useState([]);
 
-  useEffect(
-    function () {
-      async function getFiles() {
-        const arr = await fetchAllFiles();
-        setAllFiles(arr);
-      }
-      getFiles();
-    },
-    [fetchAllFiles]
-  );
+  const navigate = useNavigate();
+
+  useEffect(function () {
+    async function getFiles() {
+      const arr = await fetchAllFiles();
+      setAllFiles(arr);
+    }
+    getFiles();
+  }, []);
+
+  //handle process
+  function handleProcess(file_id) {
+    setCurrentFile(file_id);
+    console.log("File id set:", file_id);
+    navigate("/process");
+  }
 
   return (
     <div className={styles.container}>
@@ -27,7 +34,7 @@ function FIleList() {
           {allFiles.map((f) => (
             <div key={f.id} className={styles.itemC}>
               <li key={f.id}>{f.Filename}</li>
-              <button>Process</button>
+              <button onClick={(e) => handleProcess(f.id)}>Process</button>
             </div>
           ))}
         </ul>

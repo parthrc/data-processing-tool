@@ -7,7 +7,15 @@ const FileContext = createContext();
 function FileProvider({ children }) {
   const loggedInUserId = localStorage.getItem("loggedInUserId") || "0";
 
-  const [currentFile, setCurrentFile] = useState("");
+  //Function to store current file id in localstorage
+  function setCurrentFile(file_id) {
+    localStorage.setItem("currentFile", file_id);
+    console.log("localstorage set");
+  }
+
+  function getCurrentFile() {
+    return localStorage.getItem("currentFile") || "empty";
+  }
 
   //Get all files of a user
   async function fetchAllFiles() {
@@ -27,6 +35,8 @@ function FileProvider({ children }) {
     <FileContext.Provider
       value={{
         fetchAllFiles,
+        setCurrentFile,
+        getCurrentFile,
       }}
     >
       {children}
