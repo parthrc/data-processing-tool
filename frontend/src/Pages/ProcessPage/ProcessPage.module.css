@@ -1,21 +1,24 @@
-.tableContainer {
-  width: 80%;
+.container {
+  display: flex;
+  flex-direction: row;
+  padding-inline: 20px;
+  margin-top: 50px;
+  column-gap: 20px;
 }
 
 table {
-  width: 80%;
-  height: 500px;
-  background-color: red;
-}
-
-tbody {
-  background-color: green;
-}
-
-tr {
-  background-color: blue;
+  flex: 8;
 }
 
 td {
-  background-color: aqua;
+  background-color: rgba(204, 204, 204, 0.651);
+  padding: 2px;
+  text-align: center;
+}
+
+.logContainer {
+  flex: 2;
+  background-color: orange;
+  display: flex;
+  flex-direction: column;
 }

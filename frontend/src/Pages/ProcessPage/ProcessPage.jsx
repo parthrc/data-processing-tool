@@ -2,12 +2,8 @@ import { useEffect, useState } from "react";
 import Navbar from "../../Components/Navbar/Navbar";
 import { useFiles } from "../../Context/FileContext";
 import styles from "./ProcessPage.module.css";
-import { AgGridReact } from "ag-grid-react";
 
-import "ag-grid-community/styles/ag-grid.css";
-import "ag-grid-community/styles/ag-theme-alpine.css";
 import TableData from "../../Components/Table/TableData";
-import TableRow from "../../Components/Table/TableRow";
 
 function ProcessPage() {
   const { getCurrentFile } = useFiles();
@@ -52,6 +48,7 @@ function ProcessPage() {
             })}
           </tbody>
         </table>
+        <div className={styles.logContainer}>log</div>
       </div>
     </>
   );
