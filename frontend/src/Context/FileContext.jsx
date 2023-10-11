@@ -10,11 +10,19 @@ function FileProvider({ children }) {
   //Function to store current file id in localstorage
   function setCurrentFile(file_id) {
     localStorage.setItem("currentFile", file_id);
-    console.log("localstorage set");
   }
 
   function getCurrentFile() {
     return localStorage.getItem("currentFile") || "empty";
+  }
+
+  //Set current file name
+  function setCurrentFilename(filename) {
+    return localStorage.setItem("currentFilename", filename);
+  }
+
+  function getCurrentFilename() {
+    return localStorage.getItem("currentFilename");
   }
 
   //Get all files of a user
@@ -37,6 +45,8 @@ function FileProvider({ children }) {
         fetchAllFiles,
         setCurrentFile,
         getCurrentFile,
+        getCurrentFilename,
+        setCurrentFilename,
       }}
     >
       {children}

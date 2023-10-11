@@ -5,7 +5,7 @@ import { useFiles } from "../../Context/FileContext";
 import { useNavigate } from "react-router-dom";
 
 function FIleList() {
-  const { fetchAllFiles, setCurrentFile } = useFiles();
+  const { fetchAllFiles, setCurrentFile, setCurrentFilename } = useFiles();
 
   const [allFiles, setAllFiles] = useState([]);
 
@@ -20,8 +20,9 @@ function FIleList() {
   }, []);
 
   //handle process
-  function handleProcess(file_id) {
+  function handleProcess(file_id, filename) {
     setCurrentFile(file_id);
+    setCurrentFilename(filename);
     console.log("File id set:", file_id);
     navigate("/process");
   }
@@ -34,7 +35,9 @@ function FIleList() {
           {allFiles.map((f) => (
             <div key={f.id} className={styles.itemC}>
               <li key={f.id}>{f.Filename}</li>
-              <button onClick={(e) => handleProcess(f.id)}>Process</button>
+              <button onClick={(e) => handleProcess(f.id, f.Filename)}>
+                Process
+              </button>
             </div>
           ))}
         </ul>

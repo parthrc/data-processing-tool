@@ -8,6 +8,7 @@
 
 table {
   flex: 8;
+  overflow: auto;
 }
 
 td {

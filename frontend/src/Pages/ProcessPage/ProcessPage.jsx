@@ -4,10 +4,12 @@ import { useFiles } from "../../Context/FileContext";
 import styles from "./ProcessPage.module.css";
 
 import TableData from "../../Components/Table/TableData";
+import Log from "../../Components/Log/Log";
 
 function ProcessPage() {
-  const { getCurrentFile } = useFiles();
+  const { getCurrentFile, getCurrentFilename } = useFiles();
   const cfile = getCurrentFile();
+  const cfilename = getCurrentFilename();
 
   const [table, setFileData] = useState([]);
   //useEffect to get current file
@@ -34,6 +36,7 @@ function ProcessPage() {
       <Navbar />
       <div className={styles.container}>
         <table>
+          <h1>{cfilename}</h1>
           <tbody>
             {Object.keys(table).map(function (i) {
               return (
@@ -48,7 +51,10 @@ function ProcessPage() {
             })}
           </tbody>
         </table>
-        <div className={styles.logContainer}>log</div>
+        <div className={styles.logContainer}>
+          <h1>Process log:</h1>
+          <Log />
+        </div>
       </div>
     </>
   );
