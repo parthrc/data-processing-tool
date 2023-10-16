@@ -9,6 +9,7 @@ from database import engine, SessionLocal
 from sqlalchemy.orm import Session
 import json
 from helpers import convert_to_json 
+from process_helpers import remove_duplicates, remove_blanks, sort_by_column,sort_by_index, filter_by, group_by, aggregrate_by
 
 #BaseModels
 class RegisterBase(BaseModel):
@@ -170,25 +171,26 @@ async def delete_file(file_id: int, db: db_dependency):
 
 #Process endpoint
 @app.get("/process/{file_id}/{process_id}")
-async def process_file(file_id: int, process_id: int, db: db_dependency):
+async def process_file(file_id: int, process_id: int, db: db_dependency, index_name:str | None = None,):
     file = db.query(models.File).filter(models.File.id == file_id).first()
 
     if file:
         match process_id:
             case 1:
-                return {"id":1}
+
+                return remove_duplicates(json.loads(file.content))
             case 2:
-                return {"id":2}
+                return remove_blanks(json.loads(file.content))
             case 3:
-                return {"id":3}
+                return sort_by_column(json.loads(file.content))
             case 4:
-                return {"id":4}
+                return sort_by_index(json.loads(file.content), index_name)
             case 5:
-                return {"id":5}
+                return filter_by(json.loads(file.content), index_name)
             case 6:
-                return {"id":6}
+                return group_by(json.loads(file.content), index_name)
             case 7:
-                return {"id":7}
+                return aggregrate_by(json.loads(file.content), index_name, functions=['sum', 'min'])
             case _:
                 return {"status":"Fail", "msg":"Unknown process id"}
             
