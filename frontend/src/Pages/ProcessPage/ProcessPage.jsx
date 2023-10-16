@@ -36,7 +36,7 @@ function ProcessPage() {
       <Navbar />
       <div className={styles.container}>
         <table>
-          <h1>{cfilename}</h1>
+          <h1>Currently working on: {cfilename}</h1>
           <tbody>
             {Object.keys(table).map(function (i) {
               return (

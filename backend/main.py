@@ -168,5 +168,33 @@ async def delete_file(file_id: int, db: db_dependency):
      
 
 
+#Process endpoint
+@app.get("/process/{file_id}/{process_id}")
+async def process_file(file_id: int, process_id: int, db: db_dependency):
+    file = db.query(models.File).filter(models.File.id == file_id).first()
+
+    if file:
+        match process_id:
+            case 1:
+                return {"id":1}
+            case 2:
+                return {"id":2}
+            case 3:
+                return {"id":3}
+            case 4:
+                return {"id":4}
+            case 5:
+                return {"id":5}
+            case 6:
+                return {"id":6}
+            case 7:
+                return {"id":7}
+            case _:
+                return {"status":"Fail", "msg":"Unknown process id"}
+            
+       
+    return {"status":"Fail","msg":"File does not exist"}
+            
+
     
     
