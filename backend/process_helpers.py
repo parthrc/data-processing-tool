@@ -18,7 +18,7 @@ Possible values
 'count': Count the number of non-null values in the column.
 '''
 
-
+#NOT DONE
 def aggregrate_by(json_obj, index_name, functions=['sum', 'min']):
     try:
         # Create dataframe
@@ -36,12 +36,12 @@ def aggregrate_by(json_obj, index_name, functions=['sum', 'min']):
 
     return print({"status": "Success", "msg": "Aggregrated successfully", "data": dfj})
 
-
+#NOT DONE
 # Group rows by index name
-def group_by(json_obj, index, ):
+def group_by(json_obj, index):
     try:
         # Create dataframe
-        df = pd.DataFrame(json_obj)
+        df = pd.DataFrame(json_obj).T
 
         print(df)
         # Drop blanks
@@ -56,14 +56,14 @@ def group_by(json_obj, index, ):
         print("Unexpected error occured")
         return {"status": "Fail"}
 
-    return print({"status": "Success", "msg": "Grouped successfully", "data": dfj})
+    return {"status": "Success", "msg": "Grouped successfully", "data": df2.groups.to_json()}
 
-
+#DONE
 # Filter by list of specified index names
 def filter_by(json_obj, items):
     try:
         # Create dataframe
-        df = pd.DataFrame(json_obj)
+        df = pd.DataFrame(json_obj).T
         # columns before dropping blanks
         rows_before_dropping = df.shape[1]
         print(df)
@@ -71,6 +71,7 @@ def filter_by(json_obj, items):
         df2 = df.filter(items=items)
         dfj = df2.to_json()
         # columns after dropping blanks
+        print(df2)
         rows_after_dropping = df2.shape[1]
 
         # Total columns dropped
@@ -79,9 +80,9 @@ def filter_by(json_obj, items):
         print("Unexpected error occured")
         return {"status": "Fail"}
 
-    return print({"status": "Success", "indexes_dropped": total_rows_dropped, "data": dfj})
+    return {"status": "Success", "indexes_dropped": total_rows_dropped, "data": df2}
 
-
+#DONE
 # Sort index
 def sort_by_index(json_obj, isAscending=True):
     try:
@@ -89,29 +90,33 @@ def sort_by_index(json_obj, isAscending=True):
         df = pd.DataFrame(json_obj)
         print(df)
         # Sort
-        df2 = df.sort_index(axis=1, ascending=isAscending)
+        df2 = df.sort_index()
         dfj = df2.to_json()
     except Exception as e:
-        return print({"status": "Unexpected error occured"})
+        return {"status": "Unexpected error occured"}
 
-    return print({"status": "Sucess", "msg": "Data sorted successfully", "data": dfj})
+    return {"status": "Sucess", "msg": "Data sorted successfully", "data": df2}
 
-
+#NOT DONE
 # Sort by column
 def sort_by_column(json_obj, index_name, isAscending=True):
     try:
+        print(json_obj)
         # Create dataframe
         df = pd.DataFrame(json_obj)
-
+        print("sort by cloumn:", index_name)
+        print(type(df))
         # Sort
-        df2 = df.sort_values(by=index_name, ascending=isAscending)
-        dfj = df2.to_json()
+        df3 = df.sort_values()
+
+        print("Type of df3",type(df3))
+        # dfj = df2.to_json()
     except Exception as e:
-        return print({"status": "Unexpected error occured"})
+        return {"status": "Unexpected error occured"}
 
-    return print({"status": "Sucess", "msg": "Data sorted successfully", "data": dfj})
+    return {"status": "Sucess", "msg": "Data sorted successfully", "data": df3}
 
-
+#DONE
 # Drop blanks pandas
 def remove_blanks(json_obj):
     try:
@@ -120,7 +125,7 @@ def remove_blanks(json_obj):
         # Rows before dropping blanks
         rows_before_dropping = df.shape[0]
         # Drop blanks
-        df2 = df.dropna()
+        df2 = df.dropna().T
         # Rows after dropping blanks
         rows_after_dropping = df2.shape[0]
 
@@ -133,7 +138,7 @@ def remove_blanks(json_obj):
 
     return {"status": "Success", "rows_dropped": total_rows_dropped, "data": df2}
 
-
+#DONE
 # Drop duplicates
 def remove_duplicates(json_obj):
     try:

@@ -174,21 +174,22 @@ async def delete_file(file_id: int, db: db_dependency):
 async def process_file(file_id: int, process_id: int, db: db_dependency, index_name:str | None = None,):
     file = db.query(models.File).filter(models.File.id == file_id).first()
 
+
     if file:
         match process_id:
             case 1:
-
                 return remove_duplicates(json.loads(file.content))
             case 2:
                 return remove_blanks(json.loads(file.content))
             case 3:
-                return sort_by_column(json.loads(file.content))
+                return sort_by_column(json_obj=json.loads(file.content), index_name=index_name, isAscending=True
+                )
             case 4:
                 return sort_by_index(json.loads(file.content), index_name)
             case 5:
-                return filter_by(json.loads(file.content), index_name)
+                return filter_by(json.loads(file.content), items=[index_name])
             case 6:
-                return group_by(json.loads(file.content), index_name)
+                return group_by(json.loads(file.content), index=index_name)
             case 7:
                 return aggregrate_by(json.loads(file.content), index_name, functions=['sum', 'min'])
             case _:

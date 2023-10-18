@@ -41,11 +41,15 @@ function ProcessPage() {
             {Object.keys(table).map(function (i) {
               return (
                 <tr key={table[i]}>
-                  {Object.keys(table[i]).map(function (j) {
-                    return (
-                      <TableData key={table[i][j]}>{table[i][j]}</TableData>
-                    );
-                  })}
+                  {Object.keys(table[i])
+                    .reverse()
+                    .map(function (j) {
+                      return (
+                        <TableData key={table[i][j]}>
+                          {table[i][j] === "" ? " " : table[i][j]}
+                        </TableData>
+                      );
+                    })}
                 </tr>
               );
             })}

@@ -18,12 +18,13 @@ def convert_to_json(file):
 
                 data = pd.read_excel(file.file, sheet_name="Sheet1")
                 json_data = data.to_json(orient='index')
+                print(json_data)
                 return json_data
 
             elif content_type == CONTENT_TYPE_CSV:
 
                 data = pd.read_csv(
-                    file.file, encoding='utf-8', header=None)
+                    file.file, encoding='utf-8')
                
                 json_data = data.to_json(orient='records')                      
                 return json_data
