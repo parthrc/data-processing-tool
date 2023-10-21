@@ -7,6 +7,7 @@ import DashboardPage from "./Pages/DashboardPage/DashboardPage";
 import ResetPassPage from "./Pages/ResetPassPage/ResetPassPage";
 import { FileProvider } from "./Context/FileContext";
 import ProcessPage from "./Pages/ProcessPage/ProcessPage";
+import AdminPage from "./Pages/AdminPage/AdminPage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="dashboard" element={<DashboardPage />} />
             <Route path="reset" element={<ResetPassPage />} />
             <Route path="process" element={<ProcessPage />} />
+            <Route path="admin" element={<AdminPage />} />
           </Routes>
         </BrowserRouter>
       </UserProvider>
