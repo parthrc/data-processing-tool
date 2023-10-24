@@ -1,11 +1,12 @@
 .container {
-  background-color: var(--main-light);
+  background-color: hhite;
   height: 80vh;
   width: 60%;
   margin-left: 40px;
   padding-inline: 20px;
   margin-top: 40px;
   overflow-y: auto;
+  border: 1px solid grey;
 }
 
 ul {
