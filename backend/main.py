@@ -134,17 +134,22 @@ async def file_upload(file: UploadFile, user_id: int, db: db_dependency):
 @app.get("/{user_id}/files")
 async def get_files_of_user(user_id: int, db: db_dependency):
     files_list = db.query(models.File).filter(models.File.user_id == user_id).all()
-    #Above queryreturn a list of objects
-    #So we need to loop through and convert it into an json string
-    json_str = '['
+    print(type(files_list))
+    #check is list is empty
+    if len(files_list) == 0:
+        return {"status":"Fail","msg":"No files"}
+    else:
+        #Above queryreturn a list of objects
+        #So we need to loop through and convert it into an json string
+        json_str = '['
 
-    for x in files_list:         
-        json_str += f'{{"Filename":"{x.name}", "id":{x.id}}},'
+        for x in files_list:         
+            json_str += f'{{"Filename":"{x.name}", "id":{x.id}}},'
 
-    json_str += ']'
-    final_str = json_str[:-2] + json_str[-1]
-    #We use custom FastAPI Response object to stop auto serializing of data by FastAPI
-    return Response(final_str)
+        json_str += ']'
+        final_str = json_str[:-2] + json_str[-1]
+        #We use custom FastAPI Response object to stop auto serializing of data by FastAPI
+        return Response(final_str)
 
 #File iwth file id
 @app.get("/file/{file_id}")

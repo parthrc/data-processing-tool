@@ -28,14 +28,19 @@ function FileProvider({ children }) {
   //Get all files of a user
   async function fetchAllFiles() {
     try {
-      console.log(loggedInUserId);
+      // console.log(loggedInUserId);
       const res = await fetch(`http://localhost:8000/${loggedInUserId}/files`);
-      console.log(res);
+      console.log("TYPE of RES", typeof res);
+      console.log("RES", res);
+      // console.log(res);
       const data = await res.json();
-      console.log("DATA", data);
-      return data;
-    } catch {
-      alert("Error occured while getting all files");
+      console.log("TYPE of DATA", typeof data);
+      console.log(data);
+      // console.log("DATA", data, 11);
+      if (data.status == "Fail") return {};
+      else return data;
+    } catch (err) {
+      alert(err);
     }
   }
 

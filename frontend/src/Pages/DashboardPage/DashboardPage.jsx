@@ -9,9 +9,12 @@ function DashboardPage() {
   const { loggedInUserId } = useUsers();
   const navigate = useNavigate();
   //Effect to redirect user to login if not logged in
-  useEffect(function () {
-    if (loggedInUserId === "0") navigate("/login");
-  }, []);
+  useEffect(
+    function () {
+      if (loggedInUserId === "0") navigate("/login");
+    },
+    [loggedInUserId, navigate]
+  );
   return (
     <>
       <Navbar />
