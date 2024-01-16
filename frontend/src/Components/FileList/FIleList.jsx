@@ -17,7 +17,7 @@ function FIleList() {
     async function getFiles() {
       const arr = await fetchAllFiles();
 
-      setAllFiles(arr);
+      setAllFiles((s) => arr);
       console.log(typeof allFiles);
       console.log(Object.keys(allFiles).length);
     }
