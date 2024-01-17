@@ -1,5 +1,11 @@
+import { DashboardContainer, PageTitle } from "./Dashboard.jsx";
+
 function Process() {
-  return <div>Process</div>;
+  return (
+    <DashboardContainer>
+      <PageTitle>Process</PageTitle>
+    </DashboardContainer>
+  );
 }
 
 export default Process;
