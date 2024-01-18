@@ -1,5 +1,6 @@
+import RegisterForm from "../features/Auth/RegisterForm.jsx";
 function Register() {
-  return <div>Register</div>;
+  return <RegisterForm></RegisterForm>;
 }
 
 export default Register;
