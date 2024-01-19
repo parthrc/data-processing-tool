@@ -6,6 +6,9 @@ import Button from "../../ui/Button.jsx";
 import { useMutation } from "@tanstack/react-query";
 import { registerUser } from "../../services/apiUsers.js";
 import toast from "react-hot-toast";
+import ButtonGroup from "../../ui/ButtonGroup.jsx";
+
+import StyledNavLink from "../../ui/StyledNavLink.jsx";
 
 function RegisterForm() {
   const { handleSubmit, register, getValues, formState, reset } = useForm();
@@ -106,7 +109,13 @@ function RegisterForm() {
           })}
         ></Input>
       </FormRow>
-      <Button variation="primary">Register</Button>
+      <ButtonGroup direction="column">
+        <Button variation="primary">Register</Button>
+        <span>
+          Already registered?{" "}
+          <StyledNavLink to="/login">Login here</StyledNavLink>
+        </span>
+      </ButtonGroup>
     </Form>
   );
 }

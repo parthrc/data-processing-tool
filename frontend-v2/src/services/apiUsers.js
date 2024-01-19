@@ -25,3 +25,19 @@ export async function registerUser(newUser) {
   console.log("Data returned:", data);
   return data;
 }
+
+//User login
+
+export async function loginUser({ email, password }) {
+  const { data: user, error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
+
+  if (error) {
+    console.error(error);
+    throw new Error("User could not be logged in");
+  }
+
+  console.log(user);
+}

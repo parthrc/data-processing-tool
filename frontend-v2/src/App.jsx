@@ -3,6 +3,7 @@ import "./App.css";
 import Home from "./pages/Home.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import Register from "./pages/Register.jsx";
+import Login from "./pages/Login.jsx";
 import Process from "./pages/Process.jsx";
 import AppLayout from "./ui/AppLayout.jsx";
 import GlobalStyles from "./styles/GlobalSTyles.js";
@@ -30,7 +31,7 @@ function App() {
             <Route path="process" element={<Process />} />
           </Route>
           <Route path="register" element={<Register />} />
-          {/* <Route path="login" element={<Login />} /> */}
+          <Route path="login" element={<Login />} />
         </Routes>
       </BrowserRouter>
 

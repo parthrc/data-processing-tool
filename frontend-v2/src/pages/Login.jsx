@@ -1,9 +1,7 @@
+import LoginForm from "../features/Auth/LoginForm.jsx";
+
 function Login() {
-    return (
-        <div>
-Login
-        </div>
-    )
+  return <LoginForm></LoginForm>;
 }
 
-export default Login
+export default Login;
