@@ -3,30 +3,18 @@ import Form from "../../ui/Form.jsx";
 import FormRow from "../../ui/FormRow.jsx";
 import Input from "../../ui/Input.jsx";
 import Button from "../../ui/Button.jsx";
-import { useMutation } from "@tanstack/react-query";
-import { registerUser } from "../../services/apiUsers.js";
-import toast from "react-hot-toast";
 import ButtonGroup from "../../ui/ButtonGroup.jsx";
-
 import StyledNavLink from "../../ui/StyledNavLink.jsx";
+import { useRegisterUser } from "./useRegisterUser.jsx";
 
 function RegisterForm() {
   const { handleSubmit, register, getValues, formState, reset } = useForm();
 
-  //Getting all erros of the form
-  const { errors } = formState;
+  //useRegisterUser
+  const { isRegistering, registerUser } = useRegisterUser();
 
-  //Mutate function to register new user
-  const { mutate, isLoading: isRegistering } = useMutation({
-    mutationFn: registerUser,
-    onSuccess: () => {
-      toast.success("User registered successfully");
-      reset();
-    },
-    onError: () => {
-      toast.error("Error registering user");
-    },
-  });
+  //Getting all errors of the form
+  const { errors } = formState;
 
   function onError(errors) {
     console.log(errors);
@@ -34,7 +22,8 @@ function RegisterForm() {
 
   function onSubmit(data) {
     console.log(data);
-    mutate(data);
+    registerUser(data);
+    reset();
   }
 
   return (
@@ -47,6 +36,7 @@ function RegisterForm() {
           {...register("username", {
             required: "Username is required",
           })}
+          disabled={isRegistering}
         ></Input>
       </FormRow>
       <FormRow label="Email" error={errors?.email?.message}>
@@ -54,6 +44,7 @@ function RegisterForm() {
           name="email"
           type="text"
           id="email"
+          disabled={isRegistering}
           {...register("email", {
             required: "Email is required",
           })}

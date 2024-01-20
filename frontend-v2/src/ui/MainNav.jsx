@@ -1,7 +1,13 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import { HiOutlineCalendarDays, HiOutlineHome } from "react-icons/hi2";
+import {
+  HiArrowRightOnRectangle,
+  HiOutlineCalendarDays,
+  HiOutlineHome,
+} from "react-icons/hi2";
 import { VscServerProcess } from "react-icons/vsc";
+import Button from "./Button.jsx";
+import Logout from "../features/Auth/Logout.jsx";
 
 const NavList = styled.ul`
   display: flex;
@@ -63,6 +69,11 @@ function MainNav() {
           <StyledNavLink to="/process">
             <VscServerProcess />
             <span>Process</span>
+          </StyledNavLink>
+        </li>
+        <li>
+          <StyledNavLink>
+            <Logout />
           </StyledNavLink>
         </li>
       </NavList>

@@ -14,6 +14,7 @@ export const PageTitle = styled.h1`
 `;
 
 function Dashboard() {
+  console.log("In Dashboard");
   return (
     <DashboardContainer>
       <PageTitle>Dashboard</PageTitle>

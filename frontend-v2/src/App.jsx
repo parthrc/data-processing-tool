@@ -1,3 +1,6 @@
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+// import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { ReactQueryDevtools } from "react-query/devtools";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home.jsx";
@@ -7,8 +10,8 @@ import Login from "./pages/Login.jsx";
 import Process from "./pages/Process.jsx";
 import AppLayout from "./ui/AppLayout.jsx";
 import GlobalStyles from "./styles/GlobalSTyles.js";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
+import ProtectedRoute from "./ui/ProtectedRoute.jsx";
 
 //Creating a queryCLient with some default options and settings
 const queryClient = new QueryClient({
@@ -26,7 +29,13 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route index element={<Home />} />
-          <Route element={<AppLayout />}>
+          <Route
+            element={
+              <ProtectedRoute>
+                <AppLayout />
+              </ProtectedRoute>
+            }
+          >
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="process" element={<Process />} />
           </Route>

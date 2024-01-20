@@ -41,7 +41,7 @@ function Home() {
           the need for programming skills.
         </Paragraph>
       </RowContainer>
-      <ButtonGroup>
+      <ButtonGroup direction="row">
         <NavLink to="/login">
           <Button>Login</Button>
         </NavLink>
