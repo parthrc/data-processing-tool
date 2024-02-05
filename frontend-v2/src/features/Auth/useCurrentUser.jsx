@@ -13,5 +13,6 @@ export function useCurrentUser() {
     isFetchingCurrentUser,
     currentActiveUser,
     isAuthenticated: currentActiveUser?.user?.role === "authenticated",
+    current_user_id: currentActiveUser?.user?.id,
   };
 }

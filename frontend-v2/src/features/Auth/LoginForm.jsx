@@ -28,7 +28,7 @@ function LoginForm() {
           id="email"
           type="text"
           disabled={isLoggingIn}
-          value="a@b.com"
+          value="t3@mail.com"
           {...register("email", {
             required: "Please enter your email",
           })}
@@ -40,7 +40,7 @@ function LoginForm() {
           id="password"
           type="password"
           disabled={isLoggingIn}
-          value="pass@123"
+          value="t3t3t3"
           {...register("password", {
             required: "Please enter your password",
           })}

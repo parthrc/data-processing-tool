@@ -4,7 +4,20 @@ import supabase from "./supabase.js";
 //Registring a new user
 
 export async function registerUser(newUser) {
+  //Adding user to AUTH with additional user info as metadata
+  const { data: authData, error: authError } = await supabase.auth.signUp({
+    email: newUser.email,
+    password: newUser.pass1,
+  });
+  console.log("AUTH Data returned:", authData);
+
+  if (authError) {
+    console.error(authError);
+    throw new Error("User could not be registered in SUPABASE AUTH");
+  }
+
   const nUser = {
+    id: authData?.user?.id,
     username: newUser.username,
     email: newUser.email,
     password: newUser.pass1,
@@ -12,10 +25,9 @@ export async function registerUser(newUser) {
     answer: newUser.security_answer,
   };
 
-  console.log(nUser);
-
+  //Adding user to our table
   const { data, error } = await supabase
-    .from("users")
+    .from("usersv2")
     .insert([{ ...nUser }])
     .select();
 
@@ -23,8 +35,7 @@ export async function registerUser(newUser) {
     console.error(error);
     throw new Error("User could not be registered");
   }
-  console.log("Data returned:", data);
-  return data;
+  return { authData: authData, data: data };
 }
 
 //User login

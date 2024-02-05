@@ -8,6 +8,15 @@ import {
 import { VscServerProcess } from "react-icons/vsc";
 import Button from "./Button.jsx";
 import Logout from "../features/Auth/Logout.jsx";
+import WelcomeUser from "./WelcomeUser.jsx";
+
+const NavContainer = styled.nav`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  height: 100%;
+`;
 
 const NavList = styled.ul`
   display: flex;
@@ -57,27 +66,29 @@ const StyledNavLink = styled(NavLink)`
 
 function MainNav() {
   return (
-    <nav>
-      <NavList>
-        <li>
-          <StyledNavLink to="/dashboard">
-            <HiOutlineHome />
-            <span>Dashboard</span>
-          </StyledNavLink>
-        </li>
-        <li>
-          <StyledNavLink to="/process">
-            <VscServerProcess />
-            <span>Process</span>
-          </StyledNavLink>
-        </li>
-        <li>
-          <StyledNavLink>
-            <Logout />
-          </StyledNavLink>
-        </li>
-      </NavList>
-    </nav>
+    <NavContainer>
+      <div>
+        <NavList>
+          <li>
+            <StyledNavLink to="/dashboard">
+              <HiOutlineHome />
+              <span>Dashboard</span>
+            </StyledNavLink>
+          </li>
+          <li>
+            <StyledNavLink to="/process">
+              <VscServerProcess />
+              <span>Process</span>
+            </StyledNavLink>
+          </li>
+        </NavList>
+      </div>
+      <div>
+        <StyledNavLink>
+          <Logout />
+        </StyledNavLink>
+      </div>
+    </NavContainer>
   );
 }
 
