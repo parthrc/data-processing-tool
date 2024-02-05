@@ -17,8 +17,9 @@ function ProtectedRoute({ children }) {
   const navigate = useNavigate();
 
   //1. Laod authenticated user
+
   const { isFetchingCurrentUser, isAuthenticated } = useCurrentUser();
-  
+
   //3. If no authenticated user, redirect to login page
   useEffect(
     function () {

@@ -12,7 +12,9 @@ export function useCurrentUser() {
   return {
     isFetchingCurrentUser,
     currentActiveUser,
-    isAuthenticated: currentActiveUser?.user?.role === "authenticated",
+    isAuthenticated:
+      currentActiveUser?.user?.role ||
+      currentActiveUser?.role === "authenticated",
     current_user_id: currentActiveUser?.user?.id,
   };
 }

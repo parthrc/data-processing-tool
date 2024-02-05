@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import FilesList from "../features/Files/FilesList.jsx";
+import Upload from "../ui/Upload.jsx";
 
 export const DashboardContainer = styled.div`
   height: 100%;
@@ -13,12 +14,24 @@ export const PageTitle = styled.h1`
   color: var(--color-brand-800);
 `;
 
+const Container = styled.div`
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: auto 1fr;
+  width: 100%;
+  background-color: red;
+  
+`;
+
 function Dashboard() {
   console.log("In Dashboard");
   return (
     <DashboardContainer>
       <PageTitle>Dashboard</PageTitle>
-      <FilesList></FilesList>
+      <Container>
+        <FilesList></FilesList>
+        <Upload />
+      </Container>
     </DashboardContainer>
   );
 }

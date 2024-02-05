@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useFiles } from "./useFiles.jsx";
 import Spinner from "../../ui/Spinner.jsx";
 import { useFilesOfUser } from "./useFilesOfUser.jsx";
+import FileRow from "../../ui/FileRow.jsx";
 
 const ListUl = styled.ul`
   list-style-type: none;
@@ -17,9 +18,13 @@ function FilesList() {
       Fileslist
       {allFiles ? (
         <ul>
-          {allFiles.files.map((f) => (
-            <li key={f.id}>{f.file_name}</li>
-          ))}
+          {allFiles.files.map(function (f) {
+            return (
+              <>
+                <FileRow key={f.id} file={f}></FileRow>
+              </>
+            );
+          })}
         </ul>
       ) : (
         <p>No files</p>
