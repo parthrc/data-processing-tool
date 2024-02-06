@@ -1,11 +1,13 @@
 import styled from "styled-components";
 import FileInput from "./FileInput.jsx";
 import Button from "./Button.jsx";
-import { useForm, useFormState } from "react-hook-form";
-import { uploadFile } from "../services/apiFiles.js";
+import { useForm } from "react-hook-form";
+import * as xlsx from "xlsx/xlsx.mjs";
 import toast from "react-hot-toast";
 import { useUploadFile } from "../features/Files/useUploadFile.jsx";
 import { useCurrentUser } from "../features/Auth/useCurrentUser.jsx";
+import { useState } from "react";
+import readFileAsync from "../utils/helpers.js";
 
 const UploadContainer = styled.form`
   background-color: salmon;
@@ -25,15 +27,19 @@ const UploadInput = styled.input`
 function Upload() {
   const { isUploading, uploadFile } = useUploadFile();
   const { current_user_id } = useCurrentUser();
+  //States for converting file to JSON string object
+  const [jsonData, setJsonData] = useState();
 
-  function handleUploadFile(data) {
+  async function handleUploadFile(data, e) {
     if (data.upload[0] === undefined) {
       toast.error("Please choose a file before uploading");
       return null;
     }
-    console.log("isuploading", isUploading);
-    console.log("Current user inside handle submit", current_user_id);
-    uploadFile({ file: data.upload[0], current_user_id: current_user_id });
+
+    uploadFile({
+      file: data.upload[0],
+      current_user_id: current_user_id,
+    });
   }
 
   const { register, handleSubmit, formState } = useForm({});

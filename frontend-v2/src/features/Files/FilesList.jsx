@@ -13,7 +13,6 @@ const ListUl = styled.ul`
 function FilesList() {
   const { isLoading, data: allFiles, error } = useFilesOfUser();
   if (isLoading) return <Spinner />;
-  console.log("All files", allFiles);
 
   return (
     <div>

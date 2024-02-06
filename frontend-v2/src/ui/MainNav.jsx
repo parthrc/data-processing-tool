@@ -1,14 +1,11 @@
 import { NavLink, useLocation } from "react-router-dom";
 import styled from "styled-components";
-import {
-  HiArrowRightOnRectangle,
-  HiOutlineCalendarDays,
-  HiOutlineHome,
-} from "react-icons/hi2";
+import { HiOutlineHome } from "react-icons/hi2";
 import { VscServerProcess } from "react-icons/vsc";
-import Button from "./Button.jsx";
+import { FaUsers } from "react-icons/fa";
+import { FaFileSignature } from "react-icons/fa";
 import Logout from "../features/Auth/Logout.jsx";
-import WelcomeUser from "./WelcomeUser.jsx";
+import { GrOverview } from "react-icons/gr";
 
 const NavContainer = styled.nav`
   display: flex;
@@ -65,30 +62,31 @@ const StyledNavLink = styled(NavLink)`
 `;
 
 function MainNav() {
+  const adminPages = ["/admin", "/adminoverview", "/allusers", "/allfiles"];
   //Get current route
   const currentRoute = useLocation();
 
   //If Admin page then change navigation elements
-  if (currentRoute.pathname === "/admin") {
+  if (adminPages.includes(currentRoute.pathname)) {
     return (
       <NavContainer>
         <div>
           <NavList>
             <li>
-              <StyledNavLink to="/allusers">
-                <HiOutlineHome />
+              <StyledNavLink to="/admin">
+                <GrOverview />
                 <span>Overview</span>
               </StyledNavLink>
             </li>
             <li>
-              <StyledNavLink to="/process">
-                <VscServerProcess />
+              <StyledNavLink to="/allusers">
+                <FaUsers />
                 <span>Users</span>
               </StyledNavLink>
             </li>
             <li>
-              <StyledNavLink to="/process">
-                <VscServerProcess />
+              <StyledNavLink to="/allfiles">
+                <FaFileSignature />
                 <span>Files</span>
               </StyledNavLink>
             </li>

@@ -1,7 +1,9 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 // import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { ReactQueryDevtools } from "react-query/devtools";
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import AdminOverview from "./pages/AdminOverview.jsx";
+import AllUsers from "./pages/AllUsers.jsx";
+import AllFiles from "./pages/AllFiles.jsx";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
@@ -39,7 +41,10 @@ function App() {
           >
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="process" element={<Process />} />
-            <Route path="admin" element={<Admin />} />
+            <Route path="admin" element={<AdminOverview />} />
+
+            <Route path="allusers" element={<AllUsers />} />
+            <Route path="allfiles" element={<AllFiles />} />
           </Route>
           <Route path="register" element={<Register />} />
           <Route path="login" element={<Login />} />
