@@ -7,14 +7,13 @@ export function useCurrentUser() {
       queryKey: ["currentUser"],
       queryFn: getCurrentUserApi,
     });
-  console.log("Custom hook curretnUser:", currentActiveUser);
-  console.log("Custom hook curretnUser:", currentActiveUser?.user?.role);
+
   return {
     isFetchingCurrentUser,
     currentActiveUser,
     isAuthenticated:
       currentActiveUser?.user?.role ||
       currentActiveUser?.role === "authenticated",
-    current_user_id: currentActiveUser?.user?.id,
+    current_user_id: currentActiveUser?.user?.id || currentActiveUser?.id,
   };
 }
