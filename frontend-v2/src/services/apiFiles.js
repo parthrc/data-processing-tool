@@ -69,7 +69,27 @@ export async function uploadFile(file, current_user_id) {
     toast.error("Error retrieving url");
     return null;
   }
+  console.log(data);
 
   //Update record in the filesv2 table with current_user_id
-  
+  const nFileRecord = {
+    user_id: current_user_id,
+    file_name: data.path,
+    file_link: url.publicUrl,
+  };
+
+  console.log("New file record", nFileRecord);
+
+  const { data: fileRecord, error: fileRecordError } = await supabase
+    .from("filesv2")
+    .insert([nFileRecord])
+    .select();
+
+  if (fileRecordError) {
+    toast.error("Error while creating new file record");
+    return null;
+  }
+  console.log("File record", fileRecord);
+
+  return { fileRecord };
 }
