@@ -10,10 +10,11 @@ const FileRowItem = styled.li`
   justify-content: space-between;
 `;
 
-function FileRow(file, key) {
+function FileRow(file) {
   return (
-    <FileRowItem key={key}>
+    <FileRowItem>
       {file.file.file_name}
+
       <Button variation="secondary">Open</Button>
     </FileRowItem>
   );

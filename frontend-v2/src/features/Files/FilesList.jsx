@@ -6,6 +6,8 @@ import FileRow from "../../ui/FileRow.jsx";
 
 const ListUl = styled.ul`
   list-style-type: none;
+  display: flex;
+  flex-direction: column-reverse;
 `;
 
 function FilesList() {
@@ -17,19 +19,14 @@ function FilesList() {
     <div>
       Fileslist
       {allFiles ? (
-        <ul>
+        <ListUl>
           {allFiles.files.map(function (f) {
-            return (
-              <>
-                <FileRow key={f.id} file={f}></FileRow>
-              </>
-            );
+            return <FileRow key={f.id} file={f}></FileRow>;
           })}
-        </ul>
+        </ListUl>
       ) : (
         <p>No files</p>
       )}
-      {}
     </div>
   );
 }

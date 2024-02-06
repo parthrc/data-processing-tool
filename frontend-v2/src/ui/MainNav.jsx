@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import {
   HiArrowRightOnRectangle,
@@ -65,31 +65,69 @@ const StyledNavLink = styled(NavLink)`
 `;
 
 function MainNav() {
-  return (
-    <NavContainer>
-      <div>
-        <NavList>
-          <li>
-            <StyledNavLink to="/dashboard">
-              <HiOutlineHome />
-              <span>Dashboard</span>
-            </StyledNavLink>
-          </li>
-          <li>
-            <StyledNavLink to="/process">
-              <VscServerProcess />
-              <span>Process</span>
-            </StyledNavLink>
-          </li>
-        </NavList>
-      </div>
-      <div>
-        <StyledNavLink>
-          <Logout />
-        </StyledNavLink>
-      </div>
-    </NavContainer>
-  );
+  //Get current route
+  const currentRoute = useLocation();
+
+  //If Admin page then change navigation elements
+  if (currentRoute.pathname === "/admin") {
+    return (
+      <NavContainer>
+        <div>
+          <NavList>
+            <li>
+              <StyledNavLink to="/allusers">
+                <HiOutlineHome />
+                <span>Overview</span>
+              </StyledNavLink>
+            </li>
+            <li>
+              <StyledNavLink to="/process">
+                <VscServerProcess />
+                <span>Users</span>
+              </StyledNavLink>
+            </li>
+            <li>
+              <StyledNavLink to="/process">
+                <VscServerProcess />
+                <span>Files</span>
+              </StyledNavLink>
+            </li>
+          </NavList>
+        </div>
+        <div>
+          <StyledNavLink>
+            <Logout />
+          </StyledNavLink>
+        </div>
+      </NavContainer>
+    );
+  } else {
+    return (
+      <NavContainer>
+        <div>
+          <NavList>
+            <li>
+              <StyledNavLink to="/dashboard">
+                <HiOutlineHome />
+                <span>Dashboard</span>
+              </StyledNavLink>
+            </li>
+            <li>
+              <StyledNavLink to="/process">
+                <VscServerProcess />
+                <span>Process</span>
+              </StyledNavLink>
+            </li>
+          </NavList>
+        </div>
+        <div>
+          <StyledNavLink>
+            <Logout />
+          </StyledNavLink>
+        </div>
+      </NavContainer>
+    );
+  }
 }
 
 export default MainNav;

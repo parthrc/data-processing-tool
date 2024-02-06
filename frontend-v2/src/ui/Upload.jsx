@@ -14,6 +14,7 @@ const UploadContainer = styled.form`
   justify-content: center;
   flex-direction: row;
   padding-inline: 1rem;
+  max-height: 20rem;
 `;
 
 const UploadInput = styled.input`
