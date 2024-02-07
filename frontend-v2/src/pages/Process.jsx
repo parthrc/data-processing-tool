@@ -5,6 +5,7 @@ import JsonTable from "../ui/JsonTable.jsx";
 import excelToJson from "../utils/helpers.js";
 import { DashboardContainer, PageTitle } from "./Dashboard.jsx";
 import Spinner from "../ui/Spinner.jsx";
+import Datagrid from "../ui/Datagrid.jsx";
 
 function Process() {
   const [jsonData, setJsonData] = useState([
@@ -23,7 +24,7 @@ function Process() {
   return (
     <DashboardContainer>
       <PageTitle>Process</PageTitle>
-    
+      <Datagrid></Datagrid>
       {isGettingFileById === false ? (
         <JsonTable jsonData={jsonData} />
       ) : (

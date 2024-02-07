@@ -103,4 +103,18 @@ export async function mainConvertor(inputFile) {
   }
 }
 
+// !Extract keys from JSON object
+
+export function extractKeysJson(json_obj){
+  const data = Object.keys(json_obj);
+
+  const keys = [];
+
+  for (const a in data) {
+    keys.push({ key: a, name: a });
+  }
+  
+  return keys;
+}
+
 export default convertExcelToJson;
