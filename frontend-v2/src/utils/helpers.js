@@ -1,6 +1,7 @@
 import * as xlsx from "xlsx/xlsx.mjs";
+import Papa from "papaparse";
 
-const convertExcelToJson = (inputFile) => {
+export const convertExcelToJson = (inputFile) => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
 
@@ -21,5 +22,20 @@ const convertExcelToJson = (inputFile) => {
     reader.readAsArrayBuffer(inputFile);
   });
 };
+
+// Convert CSV to JSON
+export const convertCsvToJson = (inputFile) => {
+  return new Promise((resolve, reject) => {
+    Papa.parse(inputFile, {
+      header: true,
+      complete: function (results) {
+        const jsonArray = results.data;
+        resolve(jsonArray);
+      },
+    });
+  });
+};
+
+
 
 export default convertExcelToJson;
