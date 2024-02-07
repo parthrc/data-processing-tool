@@ -1,69 +1,43 @@
 import React from "react";
 import { useTable } from "react-table";
+import { useGetFileById } from "../features/Files/useGetFileById.jsx";
 
-const JsonTable = ({ jsonData }) => {
-  // Define columns and data for the table
-  const columns = React.useMemo(
-    () =>
-      jsonData.length > 0
-        ? Object.keys(jsonData[0]).map((key) => ({
-            Header: key,
-            accessor: key,
-          }))
-        : [],
-    [jsonData]
-  );
+const JsonTable = () => {
+  //Get current file
+  const { file: currentFile, isGettingFileById } = useGetFileById();
 
-  //useMemo to cache the result of the calculation between renders
-  const data = React.useMemo(() => jsonData, [jsonData]);
+  const file_data_text = currentFile.file_data_text;
 
-  // Use react-table hooks to create the table instance
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable({ columns, data });
+  const jsonFile = JSON.parse(file_data_text);
+
+  // Extract headers from the first object in the array
+  const headers = Object.keys(jsonFile[0]);
 
   return (
-    <table
-      {...getTableProps()}
-      style={{ borderCollapse: "collapse", width: "100%" }}
-    >
-      <thead>
-        {headerGroups.map((headerGroup) => (
-          <tr {...headerGroup.getHeaderGroupProps()} key={headerGroup.id}>
-            {headerGroup.headers.map((column) => (
-              <th
-                {...column.getHeaderProps()}
-                style={{
-                  border: "1px solid #ddd",
-                  padding: "8px",
-                  textAlign: "left",
-                }}
-                key={column.id}
-              >
-                {column.render("Header")}
-              </th>
+    <>
+      <p>{currentFile.file[0].file_name}</p>
+      <table>
+        <thead>
+          <tr>
+            {/* Render table headers */}
+            {headers.map((header) => (
+              <th key={header}>{header}</th>
             ))}
           </tr>
-        ))}
-      </thead>
-      <tbody {...getTableBodyProps()}>
-        {rows.map((row) => {
-          prepareRow(row);
-          return (
-            <tr {...row.getRowProps()} key={row.id}>
-              {row.cells.map((cell) => (
-                <td
-                  {...cell.getCellProps()}
-                  style={{ border: "1px solid #ddd", padding: "8px" }}
-                  key={cell.column.id}
-                >
-                  {cell.render("Cell")}
-                </td>
+        </thead>
+        <tbody>
+          {/* Render table rows */}
+          {jsonFile.map((item, index) => (
+            <tr key={index}>
+              {/* Render table cells */}
+              {headers.map((header) => (
+                <td key={header}>{item[header]}</td>
               ))}
             </tr>
-          );
-        })}
-      </tbody>
-    </table>
+          ))}
+        </tbody>
+      </table>
+    </>
   );
 };
 
