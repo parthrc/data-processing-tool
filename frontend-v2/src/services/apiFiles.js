@@ -1,7 +1,11 @@
 import supabase from "./supabase.js";
 import Papa from "papaparse";
 
-import { convertCsvToJson, convertExcelToJson } from "../utils/helpers.js";
+import {
+  convertCsvToJson,
+  convertExcelToJson,
+  mainConvertor,
+} from "../utils/helpers.js";
 import toast from "react-hot-toast";
 
 //Get all files in the DB
@@ -43,30 +47,31 @@ export async function getFilesWithUserId(user_id) {
   return { files, error };
 }
 
-// Upload files to storage
+// !Upload files to storage
 
 export async function uploadFile(file, current_user_id) {
-  //Create unique file name
+  //!Create unique file name
 
   const fileName = `${Math.random()}-${file?.name}`.replaceAll("/", "");
 
-  //Try to convert file to JSON string
+  //!Try to convert file to JSON string
 
   // const convertedData = await convertExcelToJson(file);
   // console.log("Converted Data", convertedData);
 
-  // Convert CSV to JSON
-  const dataa = await convertCsvToJson(file);
-  console.log("FILE", file);
-  console.log("DATA", dataa);
-  console.log("STRING", JSON.stringify(dataa));
+  // !Convert CSV to JSON
+  // const dataa = await convertCsvToJson(file);
+  // console.log("FILE", file);
+  // console.log("DATA", dataa);
+  // console.log("STRING", JSON.stringify(dataa));
   // console.log("FILE", file);
 
+  // !Main convertor
 
+  const aa = await mainConvertor(file);
+  console.log("FInal", aa);
 
-
-
-  //Upload file to the storage bucket and get abck the url from returned data
+  //!Upload file to the storage bucket and get abck the url from returned data
   // const { error: storageError, data } = await supabase.storage
   //   .from("da_filestorage")
   //   .upload(fileName, file);
