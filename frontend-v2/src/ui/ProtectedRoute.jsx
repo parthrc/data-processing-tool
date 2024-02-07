@@ -13,7 +13,6 @@ const FullPage = styled.div`
 `;
 
 function ProtectedRoute({ children }) {
-  console.log("In Protected Route");
   const navigate = useNavigate();
 
   //1. Laod authenticated user

@@ -27,15 +27,13 @@ const UploadInput = styled.input`
 function Upload() {
   const { isUploading, uploadFile } = useUploadFile();
   const { current_user_id } = useCurrentUser();
-  //States for converting file to JSON string object
-  const [jsonData, setJsonData] = useState();
 
   async function handleUploadFile(data, e) {
     if (data.upload[0] === undefined) {
       toast.error("Please choose a file before uploading");
       return null;
     }
-
+    //Mutation call
     uploadFile({
       file: data.upload[0],
       current_user_id: current_user_id,

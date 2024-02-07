@@ -24,7 +24,7 @@ const Container = styled.div`
 `;
 
 function Dashboard() {
-  console.log("In Dashboard");
+ 
   return (
     <DashboardContainer>
       <PageTitle>Dashboard</PageTitle>
