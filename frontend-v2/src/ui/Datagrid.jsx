@@ -2,7 +2,7 @@ import "react-data-grid/lib/styles.css";
 
 import DataGrid from "react-data-grid";
 import { demoData1, demoData2, demoData3 } from "../utils/data.js";
-import { extractKeysJson } from "../utils/helpers.js";
+
 
 function Datagrid() {
   // Generate columns dynamically based on the keys of the first object
