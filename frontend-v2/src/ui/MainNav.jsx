@@ -13,6 +13,7 @@ const NavContainer = styled.nav`
   justify-content: space-between;
   flex-wrap: nowrap;
   height: 100%;
+  align-items: center;
 `;
 
 const NavList = styled.ul`
@@ -29,9 +30,9 @@ const StyledNavLink = styled(NavLink)`
     align-items: center;
     gap: 1.2rem;
 
-    color: var(--color-grey-600);
+    color: var(--color-grey-900);
     font-size: 1.6rem;
-    font-weight: 500;
+    font-weight: 600;
     padding: 1.2rem 2.4rem;
     transition: all 0.3s;
   }
@@ -41,15 +42,15 @@ const StyledNavLink = styled(NavLink)`
   &:active,
   &.active:link,
   &.active:visited {
-    color: var(--color-brand-500);
-    background-color: var(--color-grey-50);
+    color: var(--color-grey-0);
+    background-color: var(--color-brand-600);
     border-radius: var(--border-radius-sm);
   }
 
   & svg {
-    width: 2.4rem;
-    height: 2.4rem;
-    color: var(--color-grey-400);
+    width: 1.8rem;
+    height: 1.8rem;
+    color: var(--color-grey-700);
     transition: all 0.3s;
   }
 
@@ -57,7 +58,7 @@ const StyledNavLink = styled(NavLink)`
   &:active svg,
   &.active:link svg,
   &.active:visited svg {
-    color: var(--color-brand-600);
+    color: var(--color-grey-0);
   }
 `;
 
@@ -93,9 +94,7 @@ function MainNav() {
           </NavList>
         </div>
         <div>
-          <StyledNavLink>
-            <Logout />
-          </StyledNavLink>
+          <Logout />
         </div>
       </NavContainer>
     );
@@ -119,9 +118,7 @@ function MainNav() {
           </NavList>
         </div>
         <div>
-          <StyledNavLink>
-            <Logout />
-          </StyledNavLink>
+          <Logout />
         </div>
       </NavContainer>
     );

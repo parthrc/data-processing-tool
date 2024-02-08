@@ -1,7 +1,7 @@
-import { PageTitle } from "./Dashboard.jsx";
+import Header from "../ui/Header.jsx";
 
 function AdminOverview() {
-  return <PageTitle>Admin overview</PageTitle>;
+  return <Header>Admin overview</Header>;
 }
 
 export default AdminOverview;

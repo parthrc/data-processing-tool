@@ -1,7 +1,7 @@
-import { PageTitle } from "./Dashboard.jsx";
+import Header from "../ui/Header.jsx";
 
 function AllFiles() {
-  return       <PageTitle>All files</PageTitle>;
+  return <Header>All files</Header>;
 }
 
 export default AllFiles;

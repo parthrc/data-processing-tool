@@ -1,9 +1,10 @@
-import { PageTitle } from "./Dashboard.jsx";
+import Header from "../ui/Header.jsx";
+
 
 function AllUsers() {
   return (
     <div>
-      <PageTitle>All users</PageTitle>
+      <Header>All users</Header>
     </div>
   );
 }

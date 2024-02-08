@@ -8,14 +8,16 @@ import { useUploadFile } from "../features/Files/useUploadFile.jsx";
 import { useCurrentUser } from "../features/Auth/useCurrentUser.jsx";
 import { useState } from "react";
 import readFileAsync from "../utils/helpers.js";
+import Header from "./Header.jsx";
 
 const UploadContainer = styled.form`
-  background-color: salmon;
+  background-color: var(--color-brand-orange-dark);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: row;
   padding-inline: 1rem;
+  padding-block: 3rem;
   max-height: 20rem;
 `;
 
@@ -43,16 +45,21 @@ function Upload() {
   const { register, handleSubmit, formState } = useForm({});
 
   return (
-    <UploadContainer onSubmit={handleSubmit(handleUploadFile)}>
-      <FileInput
-        id="upload"
-        {...register("upload")}
-        disabled={isUploading}
-      ></FileInput>
-      <Button variation="secondary" type="submit">
+    <div>
+      <Header size="small" bgcolor="secondary">
         Upload
-      </Button>
-    </UploadContainer>
+      </Header>
+      <UploadContainer onSubmit={handleSubmit(handleUploadFile)}>
+        <FileInput
+          id="upload"
+          {...register("upload")}
+          disabled={isUploading}
+        ></FileInput>
+        <Button variation="secondary" type="submit">
+          Upload
+        </Button>
+      </UploadContainer>
+    </div>
   );
 }
 

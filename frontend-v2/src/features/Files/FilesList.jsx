@@ -3,6 +3,7 @@ import { useFiles } from "./useFiles.jsx";
 import Spinner from "../../ui/Spinner.jsx";
 import { useFilesOfUser } from "./useFilesOfUser.jsx";
 import FileRow from "../../ui/FileRow.jsx";
+import Header from "../../ui/Header.jsx";
 
 const ListUl = styled.ul`
   list-style-type: none;
@@ -16,7 +17,9 @@ function FilesList() {
 
   return (
     <div>
-      Fileslist
+      <Header bgcolor="secondary" size="small">
+        Your files:
+      </Header>
       {allFiles ? (
         <ListUl>
           {allFiles.files.map(function (f) {

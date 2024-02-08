@@ -3,9 +3,10 @@ import { useGetCurrentFileId } from "../features/Files/useGetCurrentFile.jsx";
 import { useGetFileById } from "../features/Files/useGetFileById.jsx";
 import JsonTable from "../ui/JsonTable.jsx";
 import excelToJson from "../utils/helpers.js";
-import { DashboardContainer, PageTitle } from "./Dashboard.jsx";
+import { DashboardContainer } from "./Dashboard.jsx";
 import Spinner from "../ui/Spinner.jsx";
 import Datagrid from "../ui/Datagrid.jsx";
+import Header from "../ui/Header.jsx";
 
 function Process() {
   const [jsonData, setJsonData] = useState([
@@ -23,7 +24,7 @@ function Process() {
 
   return (
     <DashboardContainer>
-      <PageTitle>Process</PageTitle>
+      <Header>Process</Header>
       <Datagrid></Datagrid>
       {isGettingFileById === false ? (
         <JsonTable jsonData={jsonData} />

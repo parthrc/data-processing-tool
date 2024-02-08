@@ -6,6 +6,22 @@ const jsonArray = [
   { name: "Bob", age: 28, city: "Los Angeles" },
 ];
 
+const jsonArray2 = [
+  { name: "John", age: null, city: "New York" },
+  { name: "Jane", age: null, city: " " },
+  { name: "Bob", age: 28, city: "Los Angeles" },
+  { name: "", age: 30, city: "San Francisco" },
+];
+
+const jsonArray3 = [
+  { id: 1, name: "John", age: 25, city: "New York" },
+  { id: 2, name: "Jane", age: 30, city: "San Francisco" },
+  { id: 3, name: "John", age: 25, city: "New York" },
+  { id: 4, name: "Bob", age: 28, city: "Los Angeles" },
+  { id: 5, name: "Jane", age: 30, city: "San Francisco" },
+  { id: 1, name: "John", age: 25, city: "New York" },
+];
+
 /*
 * This function sorts an  json array by the given key in asc or desc orders.
 @param {string} key - Key to sort by
@@ -119,4 +135,84 @@ export function filterBy(key, value, json) {
   return { status: "Success", msg: "Filter success", data: filteredArray };
 }
 
-console.log(sortyByKey("version", demoData2));
+/*
+ * Remove all objects with blank vlaues
+
+@param {array} jsonArray - JSON array
+
+@returns {array} filteredArray - JSON array with no blanks
+
+ */
+
+export function removeBlanks(jsonArray) {
+  //Check if array is empty
+  if (jsonArray.length === 0) {
+    return {
+      status: "Fail",
+      msg: "Array is empty",
+      data: null,
+    };
+  }
+
+  // Function to check if an object has all blank values
+  const filteredArray = jsonArray.filter((obj) => {
+    // Check if any value is blank
+    return !Object.values(obj).some(
+      (value) =>
+        value === null || value === undefined || String(value).trim() === ""
+    );
+  });
+
+  if (filteredArray.length === jsonArray.length) {
+    return {
+      status: "Success",
+      msg: "Filter was successful but no blank values found",
+      data: null,
+    };
+  }
+
+  return {
+    status: "Success",
+    msg: "Filter was successful",
+    data: filteredArray,
+  };
+}
+
+/*
+ * Remove duplicate objects
+
+@param {array} jsonArray - JSON array
+
+@returns {array} uniqueArray - JSON array with unique objects
+
+ */
+
+export function removeDuplicates(jsonArray) {
+  // Use a Map to keep track of unique objects based on their string representation
+  const uniqueObjectsMap = new Map();
+
+  const uniqueArray = jsonArray.filter((obj) => {
+    // Convert each object to a string representation
+    const objString = JSON.stringify(obj);
+
+    // If the object is not in the Map, add it and return true to keep it in the filtered array
+    if (!uniqueObjectsMap.has(objString)) {
+      uniqueObjectsMap.set(objString, true);
+      return true;
+    }
+    // If the object is already in the Map, return false to exclude it from the filtered array
+    return false;
+  });
+
+  const totalDuplicates = jsonArray.length - uniqueArray.length;
+
+  console.log(uniqueObjectsMap);
+
+  return {
+    status: "Success",
+    msg: `Total duplicates found: ${totalDuplicates}`,
+    data: uniqueArray,
+  };
+}
+
+

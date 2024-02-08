@@ -5,11 +5,17 @@ import { QueryClient } from "@tanstack/react-query";
 
 const FileRowItem = styled.li`
   background-color: var(--color-grey-200);
-  padding: 1rem;
+  padding-inline: 0.5rem;
+
   margin-bottom: 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  &:hover {
+    cursor: pointer;
+    border: 1px solid var(--color-brand-orange);
+  }
 `;
 
 const queryClient = new QueryClient();

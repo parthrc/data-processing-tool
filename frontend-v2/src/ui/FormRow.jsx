@@ -1,12 +1,12 @@
 import { styled } from "styled-components";
 
 const StyledFormRow = styled.div`
-  display: grid;
-  align-items: center;
-  grid-template-columns: 24rem 1fr 1.2fr;
-  gap: 2.4rem;
+  display: flex;
 
-  padding: 1.2rem 0;
+  justify-content: space-between;
+  flex-direction: column;
+
+  padding: 0.5rem 0;
 
   &:first-child {
     padding-top: 0;
@@ -23,16 +23,17 @@ const StyledFormRow = styled.div`
   &:has(button) {
     display: flex;
     justify-content: flex-end;
-    gap: 1.2rem;
+    gap: 0.1rem;
   }
 `;
 
 const Label = styled.label`
   font-weight: 500;
+  font-size: 1.2rem;
 `;
 
 const Error = styled.span`
-  font-size: 1.4rem;
+  font-size: 1rem;
   color: var(--color-red-700);
 `;
 
