@@ -1,5 +1,5 @@
 import React from "react";
-import { useTable } from "react-table";
+
 import { useGetFileById } from "../features/Files/useGetFileById.jsx";
 
 const JsonTable = () => {

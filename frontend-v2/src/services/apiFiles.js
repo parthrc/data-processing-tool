@@ -2,7 +2,7 @@ import supabase from "./supabase.js";
 
 import { mainConvertor } from "../utils/helpers.js";
 import toast from "react-hot-toast";
-import { QueryClient, useQueryClient } from "@tanstack/react-query";
+
 
 // *Get all files in the DB
 export async function getAllFiles() {
