@@ -2,7 +2,7 @@ import supabase from "./supabase.js";
 
 import { mainConvertor } from "../utils/helpers.js";
 import toast from "react-hot-toast";
-import { QueryClient } from "@tanstack/react-query";
+import { QueryClient, useQueryClient } from "@tanstack/react-query";
 
 // *Get all files in the DB
 export async function getAllFiles() {
@@ -115,7 +115,8 @@ export async function getCurrentFile() {
 
 //* Get files by file_id
 
-export async function getFileById(file_id) {
+export async function getFileById() {
+  const file_id = await getCurrentFile();
   const { data: file, error } = await supabase
     .from("filesv2")
     .select("*")
@@ -140,7 +141,5 @@ export async function updateCurrentFile(new_file_id) {
     .eq("id", 1)
     .select();
 
-  const q = new QueryClient();
-
-  q.invalidateQueries({ queryKey: ["getFileById"] });
+  return updatedCurrentFileId;
 }
