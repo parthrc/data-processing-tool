@@ -3,7 +3,6 @@ import supabase from "./supabase.js";
 import { mainConvertor } from "../utils/helpers.js";
 import toast from "react-hot-toast";
 
-
 // *Get all files in the DB
 export async function getAllFiles() {
   const { data: files, error } = await supabase.from("filesv2").select("*");
@@ -73,7 +72,9 @@ export async function uploadFile(file, current_user_id) {
     toast.error("Error retrieving url");
     return null;
   }
-  console.log(data);
+
+  //Get keys of the json object
+  const keys = Object.keys(JSON.parse(jsonData)[0]);
 
   //Update record in the filesv2 table with current_user_id
   const nFileRecord = {
@@ -83,6 +84,7 @@ export async function uploadFile(file, current_user_id) {
     file_data: jsonData,
     file_data_text: jsonData,
     file_format: file?.type,
+    table_keys: keys,
   };
 
   console.log("New file record", nFileRecord);

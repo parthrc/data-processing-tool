@@ -1,21 +1,20 @@
 import React from "react";
 
-import { useGetFileById } from "../features/Files/useGetFileById.jsx";
+import { getFromLocalStorage } from "../utils/localStorageUtils.js";
 
 const JsonTable = () => {
-  //Get current file
-  const { file: currentFile, isGettingFileById } = useGetFileById();
+  //Get current file from localstorage
 
-  const file_data_text = currentFile.file_data_text;
+  const currentFile = getFromLocalStorage("current_file");
 
-  const jsonFile = JSON.parse(file_data_text);
+  const jsonFile = currentFile;
 
   // Extract headers from the first object in the array
   const headers = Object.keys(jsonFile[0]);
 
   return (
     <>
-      <p>{currentFile.file[0].file_name}</p>
+      {/* <p>{currentFile.file[0].file_name}</p> */}
       <table>
         <thead>
           <tr>

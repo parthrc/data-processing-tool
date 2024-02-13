@@ -105,7 +105,7 @@ export async function mainConvertor(inputFile) {
 
 // !Extract keys from JSON object
 
-export function extractKeysJson(json_obj){
+export function extractKeysJson(json_obj) {
   const data = Object.keys(json_obj);
 
   const keys = [];
@@ -113,8 +113,18 @@ export function extractKeysJson(json_obj){
   for (const a in data) {
     keys.push({ key: a, name: a });
   }
-  
+
   return keys;
 }
 
 export default convertExcelToJson;
+
+// ! Check if JSON is valid
+export function isValidJSON(jsonString) {
+  try {
+    JSON.parse(jsonString);
+    return true;
+  } catch (error) {
+    return false;
+  }
+}

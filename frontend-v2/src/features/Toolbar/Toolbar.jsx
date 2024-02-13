@@ -4,6 +4,11 @@ import { IoIosRemoveCircle } from "react-icons/io";
 import { FaSort } from "react-icons/fa";
 import { FaFilter } from "react-icons/fa";
 import ToolbarItem from "../../ui/ToolbarItem.jsx";
+import {
+  getFromLocalStorage,
+  saveToLocalStorage,
+} from "../../utils/localStorageUtils.js";
+import { removeBlanks } from "../../utils/processHelpers.js";
 
 const ToolsbarContainer = styled.div`
   background-color: red;
@@ -18,9 +23,24 @@ const ToolsbarContainer = styled.div`
 function handleToolbarItemClick(type) {
   switch (type) {
     case "remove_duplicates": {
+      const curr = getFromLocalStorage("current_file");
+      if (curr === undefined) {
+        console.log("Please select a file");
+        break;
+      }
+
+      const pro_data = removeBlanks(curr);
+
+      console.log(pro_data);
+
       console.log("Duplicates removed");
+
+      // udpate current file in localstorage
+      saveToLocalStorage("current_file", pro_data.data);
+
       break;
     }
+
     case "filter": {
       console.log("Filter");
       break;

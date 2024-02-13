@@ -25,6 +25,7 @@ function FileRow(file) {
   function handleFileClick(file_id) {
     //Update current file ID
     mutateUpdateCurrentFileId(file_id);
+   
   }
 
   return (

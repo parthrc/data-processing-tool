@@ -1,19 +1,12 @@
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import {
-  QueryClient,
-  useMutation,
-  useQuery,
-  useQueryClient,
-} from "@tanstack/react-query";
-import { updateCurrentFile as updateCurrentFileApi } from "../../services/apiFiles.js";
+  getFileById,
+  updateCurrentFile as updateCurrentFileApi,
+} from "../../services/apiFiles.js";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-
-// export function useUpdateCurrentFileId(file_id) {
-//   const { data: updatedCurrentFileId, isLoading: isUpdatingCurrentFileId } =
-//     useQuery({
-//       queryKey: ["updateCUrrentFileId", file_id],
-//       queryFn: () => updateCurrentFileApi(file_id),
-//     });
+import { saveToLocalStorage } from "../../utils/localStorageUtils.js";
+import { useGetFileById } from "./useGetFileById.jsx";
 
 export function useUpdateCurrentFileId() {
   const queryClient = useQueryClient();
@@ -25,9 +18,14 @@ export function useUpdateCurrentFileId() {
     error,
   } = useMutation({
     mutationFn: (file_id) => updateCurrentFileApi(file_id),
-    onSuccess: () => {
+    onSuccess: async (data) => {
       toast.success("Opening selected file");
       queryClient.invalidateQueries({ queryKey: ["getFileById"] });
+
+      // set current file in localstorage
+      const curr = await getFileById(data?.file_id);
+      saveToLocalStorage("current_file", curr?.file_data_text);
+
       navigate("/process");
     },
     onError: () => {

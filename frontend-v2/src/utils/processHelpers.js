@@ -1,26 +1,4 @@
-import { demoData2 } from "./data.js";
-
-const jsonArray = [
-  { name: "John", age: 25, city: "New York" },
-  { name: "Jane", age: 30, city: "San Francisco" },
-  { name: "Bob", age: 28, city: "Los Angeles" },
-];
-
-const jsonArray2 = [
-  { name: "John", age: null, city: "New York" },
-  { name: "Jane", age: null, city: " " },
-  { name: "Bob", age: 28, city: "Los Angeles" },
-  { name: "", age: 30, city: "San Francisco" },
-];
-
-const jsonArray3 = [
-  { id: 1, name: "John", age: 25, city: "New York" },
-  { id: 2, name: "Jane", age: 30, city: "San Francisco" },
-  { id: 3, name: "John", age: 25, city: "New York" },
-  { id: 4, name: "Bob", age: 28, city: "Los Angeles" },
-  { id: 5, name: "Jane", age: 30, city: "San Francisco" },
-  { id: 1, name: "John", age: 25, city: "New York" },
-];
+import { isValidJSON } from "./helpers.js";
 
 /*
 * This function sorts an  json array by the given key in asc or desc orders.
@@ -37,7 +15,7 @@ export function sortyByKey(key, json, sortOrder = "ascending") {
     return {
       status: "Fail",
       msg: "Array is empty",
-      data: null,
+      data: json,
     };
   }
   //Check if key exist
@@ -48,7 +26,7 @@ export function sortyByKey(key, json, sortOrder = "ascending") {
       status: "Fail",
       msg: `Key does not exist, possible keys are: ${keys}`,
 
-      data: null,
+      data: json,
     };
   }
   // Function to compare objects based on a specific key
@@ -98,12 +76,12 @@ export function sortyByKey(key, json, sortOrder = "ascending") {
 */
 
 export function filterBy(key, value, json) {
-  //Check if array is empty
   if (json.length === 0) {
+    //Check if array is empty
     return {
       status: "Fail",
       msg: "Array is empty",
-      data: null,
+      data: json,
     };
   }
   //Check if key exist
@@ -114,7 +92,7 @@ export function filterBy(key, value, json) {
       status: "Fail",
       msg: `Key does not exist, possible keys are: ${keys}`,
 
-      data: null,
+      data: json,
     };
   }
 
@@ -132,7 +110,14 @@ export function filterBy(key, value, json) {
     };
   }
 
-  return { status: "Success", msg: "Filter success", data: filteredArray };
+  const rows_filtered = json.length - filteredArray.length - 1;
+
+  return {
+    status: "Success",
+    msg: "Filter success",
+    data: filteredArray,
+    rows_filtered,
+  };
 }
 
 /*
@@ -150,7 +135,7 @@ export function removeBlanks(jsonArray) {
     return {
       status: "Fail",
       msg: "Array is empty",
-      data: null,
+      data: jsonArray,
     };
   }
 
@@ -166,15 +151,16 @@ export function removeBlanks(jsonArray) {
   if (filteredArray.length === jsonArray.length) {
     return {
       status: "Success",
-      msg: "Filter was successful but no blank values found",
-      data: null,
+      msg: "No blank values found",
+      data: jsonArray,
     };
   }
-
+  const rows_removed = jsonArray.length - filteredArray.length - 1;
   return {
     status: "Success",
     msg: "Filter was successful",
     data: filteredArray,
+    rows_removed,
   };
 }
 
@@ -188,6 +174,14 @@ export function removeBlanks(jsonArray) {
  */
 
 export function removeDuplicates(jsonArray) {
+  //Check if array is empty
+  if (jsonArray.length === 0) {
+    return {
+      status: "Fail",
+      msg: "Array is empty",
+      data: jsonArray,
+    };
+  }
   // Use a Map to keep track of unique objects based on their string representation
   const uniqueObjectsMap = new Map();
 
@@ -204,15 +198,12 @@ export function removeDuplicates(jsonArray) {
     return false;
   });
 
-  const totalDuplicates = jsonArray.length - uniqueArray.length;
-
-  console.log(uniqueObjectsMap);
+  const totalDuplicates = jsonArray.length - uniqueArray.length - 1;
 
   return {
     status: "Success",
     msg: `Total duplicates found: ${totalDuplicates}`,
     data: uniqueArray,
+    totalDuplicates,
   };
 }
-
-
