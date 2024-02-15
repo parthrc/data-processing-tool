@@ -5,7 +5,7 @@ import {
 } from "../../services/apiFiles.js";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { saveToLocalStorage } from "../../utils/localStorageUtils.js";
+import { addCurrentFileToLocalStorage, saveToLocalStorage } from "../../utils/localStorageUtils.js";
 import { useGetFileById } from "./useGetFileById.jsx";
 
 export function useUpdateCurrentFileId() {
@@ -22,9 +22,9 @@ export function useUpdateCurrentFileId() {
       toast.success("Opening selected file");
       queryClient.invalidateQueries({ queryKey: ["getFileById"] });
 
-      // set current file in localstorage
+      // Set current file info in localstorage
       const curr = await getFileById(data?.file_id);
-      saveToLocalStorage("current_file", curr?.file_data_text);
+      addCurrentFileToLocalStorage(curr);
 
       navigate("/process");
     },

@@ -7,6 +7,7 @@ import ToolbarItem from "../../ui/ToolbarItem.jsx";
 import {
   getFromLocalStorage,
   saveToLocalStorage,
+  updateProcessLogInLS,
 } from "../../utils/localStorageUtils.js";
 import { removeBlanks } from "../../utils/processHelpers.js";
 
@@ -37,6 +38,7 @@ function handleToolbarItemClick(type) {
 
       // udpate current file in localstorage
       saveToLocalStorage("current_file", pro_data.data);
+      updateProcessLogInLS(pro_data?.msg);
 
       break;
     }

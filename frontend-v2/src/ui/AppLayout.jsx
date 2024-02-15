@@ -5,14 +5,13 @@ import styled from "styled-components";
 
 const StyledAppLayout = styled.div`
   display: grid;
-  grid-template-columns: 22rem 1fr;
+  grid-template-columns: 18rem 1fr;
   grid-template-rows: auto 1fr;
   height: 100vh;
 `;
 
 const Main = styled.main`
   background-color: var(--color-grey-50);
-  padding: 1rem;
   overflow: scroll;
   height: 100vh;
 `;

@@ -139,7 +139,7 @@ export function removeBlanks(jsonArray) {
     };
   }
 
-  // Function to check if an object has all blank values
+  // Function to check if an object has any blank value
   const filteredArray = jsonArray.filter((obj) => {
     // Check if any value is blank
     return !Object.values(obj).some(

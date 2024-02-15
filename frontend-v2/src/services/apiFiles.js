@@ -79,12 +79,13 @@ export async function uploadFile(file, current_user_id) {
   //Update record in the filesv2 table with current_user_id
   const nFileRecord = {
     user_id: current_user_id,
-    file_name: data.path,
+    file_name_unique: data.path,
     file_link: url.publicUrl,
     file_data: jsonData,
     file_data_text: jsonData,
     file_format: file?.type,
     table_keys: keys,
+    file_name: file.name,
   };
 
   console.log("New file record", nFileRecord);
