@@ -106,7 +106,7 @@ export function filterBy(key, value, json) {
     return {
       status: "Success",
       msg: "Filter success but no values found",
-      data: filteredArray,
+      data: json,
     };
   }
 

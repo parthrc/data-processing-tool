@@ -1,8 +1,5 @@
 import styled from "styled-components";
-import {
-  getCurrentfileInfoFromLocal,
-  getFromLocalStorage,
-} from "../utils/localStorageUtils.js";
+import { getFromLocalStorage } from "../utils/localStorageUtils.js";
 
 const StyledProcessLog = styled.div`
   background-color: yellow;
@@ -10,14 +7,14 @@ const StyledProcessLog = styled.div`
 
 function ProcessLog() {
   const log = getFromLocalStorage("current_process_log");
-  console.log(log);
+
   return (
     <StyledProcessLog>
       <ul>
         {log !== "" ? (
           <>
-            {log.map((item) => (
-              <li key={item}>{item}</li>
+            {log.map((item, index) => (
+              <li key={index}>{item.msg}</li>
             ))}
           </>
         ) : (

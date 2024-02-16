@@ -9,7 +9,12 @@ import {
   saveToLocalStorage,
   updateProcessLogInLS,
 } from "../../utils/localStorageUtils.js";
-import { removeBlanks } from "../../utils/processHelpers.js";
+import { filterBy, removeBlanks } from "../../utils/processHelpers.js";
+import { useState } from "react";
+import ToolbarAccordian from "./ToolbarAccordian.jsx";
+import RemovePanel from "./RemovePanel.jsx";
+import FilterPanel from "./FilterPanel.jsx";
+import SortPanel from "./SortPanel.jsx";
 
 const ToolsbarContainer = styled.div`
   background-color: red;
@@ -20,45 +25,59 @@ const ToolsbarContainer = styled.div`
   padding-block: 1rem;
 `;
 
-// handle Toolabr items click
-function handleToolbarItemClick(type) {
-  switch (type) {
-    case "remove_duplicates": {
-      const curr = getFromLocalStorage("current_file");
-      if (curr === undefined) {
-        console.log("Please select a file");
+function Toolbar() {
+  const allProcesses = ["remove", "filter", "sort"];
+  // State to store current active process
+  const [activeProcess, setActiveProcess] = useState("");
+  const [showPanel, setShowPanel] = useState(false);
+
+  // Handle Toolbar items click
+  function handleToolbarItemClick(type) {
+    const curr = getFromLocalStorage("current_file");
+    if (curr === undefined) {
+      console.log("Please select a file");
+      return null;
+    }
+
+    switch (type) {
+      case "remove_duplicates": {
+        setActiveProcess(allProcesses[0]);
+        setShowPanel(true);
         break;
       }
 
-      const pro_data = removeBlanks(curr);
+      case "filter": {
+        setActiveProcess(allProcesses[1]);
+        setShowPanel(true);
+        const pro_data = filterBy("Total", "144", curr);
 
-      console.log(pro_data);
+        console.log(pro_data);
 
-      console.log("Duplicates removed");
+        console.log("Filtered");
 
-      // udpate current file in localstorage
-      saveToLocalStorage("current_file", pro_data.data);
-      updateProcessLogInLS(pro_data?.msg);
-
-      break;
-    }
-
-    case "filter": {
-      console.log("Filter");
-      break;
-    }
-    case "sort": {
-      console.log("Sort");
-      break;
-    }
-    default: {
-      console.log("Default case");
-      break;
+        // Udpate current file in localstorage
+        saveToLocalStorage("current_file", pro_data.data);
+        updateProcessLogInLS(pro_data);
+        break;
+      }
+      case "sort": {
+        setActiveProcess(allProcesses[2]);
+        setShowPanel(true);
+        console.log("Sort");
+        break;
+      }
+      default: {
+        console.log("Default case");
+        break;
+      }
     }
   }
-}
 
-function Toolbar() {
+  // CLose panel
+  function closePanel() {
+    setShowPanel(false);
+  }
+
   return (
     <div>
       <Header bgcolor="secondary" size="small">
@@ -81,6 +100,13 @@ function Toolbar() {
           Sort
         </ToolbarItem>
       </ToolsbarContainer>
+      {showPanel && (
+        <ToolbarAccordian onClick={closePanel}>
+          {activeProcess === allProcesses[0] && <RemovePanel />}
+          {activeProcess === allProcesses[1] && <FilterPanel />}
+          {activeProcess === allProcesses[2] && <SortPanel />}
+        </ToolbarAccordian>
+      )}
     </div>
   );
 }

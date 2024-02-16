@@ -5,6 +5,8 @@ import styled from "styled-components";
 
 const StyledJsonTableContainer = styled.div`
   background-color: green;
+  height: 40rem;
+  overflow: auto;
 `;
 
 const JsonTable = () => {
