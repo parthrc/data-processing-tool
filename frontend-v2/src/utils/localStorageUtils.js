@@ -22,6 +22,7 @@ export const addCurrentFileToLocalStorage = (curr) => {
   saveToLocalStorage("current_file_name", curr?.file[0]?.file_name);
   saveToLocalStorage("current_file_keys", curr?.file[0]?.table_keys);
   saveToLocalStorage("current_file_format", curr?.file[0]?.file_format);
+  saveToLocalStorage("current_process_log", "");
 };
 
 // Reset current file infor in lcoastorage

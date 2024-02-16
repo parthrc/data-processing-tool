@@ -5,7 +5,10 @@ import {
 } from "../../services/apiFiles.js";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { addCurrentFileToLocalStorage, saveToLocalStorage } from "../../utils/localStorageUtils.js";
+import {
+  addCurrentFileToLocalStorage,
+ 
+} from "../../utils/localStorageUtils.js";
 import { useGetFileById } from "./useGetFileById.jsx";
 
 export function useUpdateCurrentFileId() {
@@ -25,6 +28,9 @@ export function useUpdateCurrentFileId() {
       // Set current file info in localstorage
       const curr = await getFileById(data?.file_id);
       addCurrentFileToLocalStorage(curr);
+
+      //Remove current file log
+     
 
       navigate("/process");
     },

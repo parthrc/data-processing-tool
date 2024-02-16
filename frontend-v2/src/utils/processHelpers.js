@@ -76,6 +76,8 @@ export function sortyByKey(key, json, sortOrder = "ascending") {
 */
 
 export function filterBy(key, value, json) {
+  console.log(key);
+  console.log(value);
   if (json.length === 0) {
     //Check if array is empty
     return {
@@ -97,9 +99,14 @@ export function filterBy(key, value, json) {
   }
 
   // Filter operation
-  const filteredArray = json.filter(
-    (x) => String(x[key]).toLowerCase() === String(value.toLowerCase())
-  );
+  const filteredArray = json.filter((x) => {
+    if (String(x[key]).toLowerCase() === value.toLowerCase()) {
+      return x;
+    }
+    console.log(String(x[key]).toLowerCase() === value.toLowerCase());
+  });
+
+  console.log("FIletred array", filteredArray);
 
   //Check if empty filtered array
   if (filteredArray.length === 0) {
@@ -114,7 +121,7 @@ export function filterBy(key, value, json) {
 
   return {
     status: "Success",
-    msg: "Filter success",
+    msg: `${rows_filtered}, rows filtered successfully`,
     data: filteredArray,
     rows_filtered,
   };
@@ -158,7 +165,7 @@ export function removeBlanks(jsonArray) {
   const rows_removed = jsonArray.length - filteredArray.length - 1;
   return {
     status: "Success",
-    msg: "Filter was successful",
+    msg: `${rows_removed} blank rows removed successfully`,
     data: filteredArray,
     rows_removed,
   };
@@ -198,7 +205,7 @@ export function removeDuplicates(jsonArray) {
     return false;
   });
 
-  const totalDuplicates = jsonArray.length - uniqueArray.length - 1;
+  const totalDuplicates = jsonArray.length - uniqueArray.length;
 
   return {
     status: "Success",

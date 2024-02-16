@@ -49,15 +49,7 @@ function Toolbar() {
       case "filter": {
         setActiveProcess(allProcesses[1]);
         setShowPanel(true);
-        const pro_data = filterBy("Total", "144", curr);
 
-        console.log(pro_data);
-
-        console.log("Filtered");
-
-        // Udpate current file in localstorage
-        saveToLocalStorage("current_file", pro_data.data);
-        updateProcessLogInLS(pro_data);
         break;
       }
       case "sort": {
