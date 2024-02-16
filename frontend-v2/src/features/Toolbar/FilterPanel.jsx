@@ -51,6 +51,7 @@ function FilterPanel() {
     // udpate current file in localstorage
     saveToLocalStorage("current_file", pro_data.data);
     updateProcessLogInLS(pro_data);
+    location.reload();
   }
 
   return (

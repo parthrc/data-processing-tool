@@ -22,6 +22,7 @@ function RemovePanel() {
     // udpate current file in localstorage
     saveToLocalStorage("current_file", pro_data.data);
     updateProcessLogInLS(pro_data);
+    location.reload();
   }
 
   function handleRemoveBlanks() {
@@ -39,6 +40,7 @@ function RemovePanel() {
     // udpate current file in localstorage
     saveToLocalStorage("current_file", pro_data.data);
     updateProcessLogInLS(pro_data);
+    location.reload();
   }
 
   return (
