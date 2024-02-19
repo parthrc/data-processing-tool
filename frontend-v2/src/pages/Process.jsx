@@ -5,7 +5,7 @@ import Toolbar from "../features/Toolbar/Toolbar.jsx";
 import ProcessLog from "../ui/ProcessLog.jsx";
 import styled from "styled-components";
 
-const TableContainer = styled.div`
+const MainContainer = styled.div`
   display: grid;
   grid-template-columns: 3fr 1fr;
 `;
@@ -15,10 +15,11 @@ function Process() {
     <DashboardContainer>
       <Header>Process</Header>
       <Toolbar bgcolor="secondary" size="small"></Toolbar>
-      <TableContainer>
+      <MainContainer>
         <JsonTable />
+
         <ProcessLog />
-      </TableContainer>
+      </MainContainer>
     </DashboardContainer>
   );
 }

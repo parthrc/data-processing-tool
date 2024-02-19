@@ -15,6 +15,7 @@ import AppLayout from "./ui/AppLayout.jsx";
 import GlobalStyles from "./styles/GlobalSTyles.js";
 import { Toaster } from "react-hot-toast";
 import ProtectedRoute from "./ui/ProtectedRoute.jsx";
+import AdminLogin from "./pages/AdminLogin.jsx";
 
 //Creating a queryCLient with some default options and settings
 const queryClient = new QueryClient({
@@ -48,6 +49,7 @@ function App() {
           </Route>
           <Route path="register" element={<Register />} />
           <Route path="login" element={<Login />} />
+          <Route path="admin-login" element={<AdminLogin />} />
         </Routes>
       </BrowserRouter>
 

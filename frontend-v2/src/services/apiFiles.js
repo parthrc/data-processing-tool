@@ -146,3 +146,64 @@ export async function updateCurrentFile(new_file_id) {
 
   return updatedCurrentFileId;
 }
+
+// * Udpate file data on server
+
+// export async function updateFileData(
+//   current_file,
+//   updated_data,
+//   current_user_id
+// ) {
+//   //!Create unique file name
+
+//   const fileName = `${Math.random()}-${current_file?.name}`.replaceAll("/", "");
+
+//   console.log("Current_file:", current_file);
+//   console.log("Updated data:", updated_data);
+//   console.log("Filename:", fileName);
+
+//   // DOnt need to convert as it is already JSON
+//   //!Upload file to the storage bucket and get abck the url from returned data
+//   const { error: storageError, data } = await supabase.storage
+//     .from("da_filestorage")
+//     .upload(fileName, current_file);
+
+//   if (storageError) {
+//     toast.error("Error uploading");
+//     return null;
+//   }
+
+//   //Creating the public URL of the uploaded file
+//   const { data: url, error: urlError } = supabase.storage
+//     .from("da_filestorage")
+//     .getPublicUrl(data.path);
+
+//   if (urlError) {
+//     toast.error("Error retrieving url");
+//     return null;
+//   }
+
+//   //Update record in the filesv2 table with current_user_id
+//   const nFileRecord = {
+//     user_id: current_user_id,
+//     file_name_unique: data.path,
+//     file_link: url.publicUrl,
+//     file_data: updated_data,
+//     file_data_text: updated_data,
+//     file_format: file?.type,
+//     table_keys: keys,
+//     file_name: file.name,
+//   };
+
+//   console.log("New file record", nFileRecord);
+
+//   const { data: fileRecord, error: fileRecordError } = await supabase
+//     .from("filesv2")
+//     .insert([nFileRecord])
+//     .select();
+
+//   if (fileRecordError) {
+//     toast.error("Error while creating new file record");
+//     return null;
+//   }
+// }

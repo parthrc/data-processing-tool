@@ -10,8 +10,19 @@ export function useLoginUser() {
   const { mutate: loginUser, isLoading: isLoggingIn } = useMutation({
     mutationFn: ({ email, password }) => loginUserApi({ email, password }),
     onSuccess: (user) => {
+      if (user?.user?.user?.email === "admin@admin.com") {
+        toast.success("Admin login success");
+
+        queryClient.setQueryData(["currentUser"], user.user);
+
+        navigate("/admin", { replace: true });
+        return null;
+      }
+
       toast.success("User login success");
+
       queryClient.setQueryData(["currentUser"], user.user);
+
       navigate("/dashboard", { replace: true });
     },
     onError: () => {
