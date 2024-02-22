@@ -9,11 +9,12 @@ export const DashboardContainer = styled.div`
 `;
 
 const Container = styled.div`
+  padding: 1.5rem;
   display: grid;
   grid-template-columns: 2fr 1fr;
   grid-template-rows: auto 1fr;
   width: 100%;
-  gap: 1rem;
+  gap: 1.5rem;
 `;
 
 function Dashboard() {

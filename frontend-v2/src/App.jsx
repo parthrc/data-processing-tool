@@ -9,7 +9,6 @@ import Home from "./pages/Home.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import Register from "./pages/Register.jsx";
 import Login from "./pages/Login.jsx";
-import Admin from "./pages/Admin.jsx";
 import Process from "./pages/Process.jsx";
 import AppLayout from "./ui/AppLayout.jsx";
 import GlobalStyles from "./styles/GlobalSTyles.js";

@@ -5,16 +5,30 @@ import FileFormatIcon from "./FileFormatIcon.jsx";
 
 const FileRowItem = styled.li`
   background-color: var(--color-grey-200);
-  padding-inline: 0.5rem;
+  padding: 0.5rem;
 
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
 
   &:hover {
     cursor: pointer;
-    border: 1px solid var(--color-brand-orange);
+    background-color: var(--color-grey-300);
+  }
+`;
+
+const StyledFileName = styled.span`
+  font-size: 1.3rem;
+`;
+
+const StyledIconContainer = styled.div`
+  padding: 0.2rem;
+  color: red;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.25);
   }
 `;
 
@@ -31,8 +45,10 @@ function FileRow(file) {
   return (
     <FileRowItem onClick={() => handleFileClick(file.file.id)}>
       <FileFormatIcon fileFormat={file.file.file_format}></FileFormatIcon>
-      {file.file.file_name}
-      <RiDeleteBin5Line />
+      <StyledFileName>{file.file.file_name}</StyledFileName>
+      <StyledIconContainer>
+        <RiDeleteBin5Line />
+      </StyledIconContainer>
     </FileRowItem>
   );
 }

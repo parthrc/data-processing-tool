@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { useFiles } from "./useFiles.jsx";
 import Spinner from "../../ui/Spinner.jsx";
 import { useFilesOfUser } from "./useFilesOfUser.jsx";
 import FileRow from "../../ui/FileRow.jsx";
@@ -8,6 +7,8 @@ import Header from "../../ui/Header.jsx";
 const FilesListContainer = styled.div`
   padding: 1rem;
   background-color: white;
+  overflow: auto;
+  height: 80vh;
 `;
 
 const ListUl = styled.ul`

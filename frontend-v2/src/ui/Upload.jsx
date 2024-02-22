@@ -10,10 +10,11 @@ import Header from "./Header.jsx";
 
 const UploadMainContainer = styled.div`
   padding: 1rem;
+  background-color: white;
 `;
 
 const UploadContainer = styled.form`
-  background-color: var(--color-brand-orange-dark);
+  background-color: var(--color-grey-200);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -23,12 +24,20 @@ const UploadContainer = styled.form`
   max-height: 20rem;
 `;
 
-const UploadInput = styled.input`
-  text-align: center;
-  background-color: chartreuse;
+const UploadButton = styled.button`
+  background-color: var(--color-green-700);
+  border: none;
+  padding: 0%.5rem;
+  color: white;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+  }
 `;
 
 function Upload() {
+  const { register, handleSubmit, formState, reset } = useForm({});
   const { isUploading, uploadFile } = useUploadFile();
   const { current_user_id } = useCurrentUser();
 
@@ -42,9 +51,9 @@ function Upload() {
       file: data.upload[0],
       current_user_id: current_user_id,
     });
-  }
 
-  const { register, handleSubmit, formState } = useForm({});
+    reset();
+  }
 
   return (
     <UploadMainContainer>
@@ -57,9 +66,8 @@ function Upload() {
           {...register("upload")}
           disabled={isUploading}
         ></FileInput>
-        <Button variation="secondary" type="submit">
-          Upload
-        </Button>
+
+        <UploadButton type="submit">Upload</UploadButton>
       </UploadContainer>
     </UploadMainContainer>
   );
