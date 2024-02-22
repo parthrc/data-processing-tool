@@ -2,13 +2,15 @@ import styled from "styled-components";
 import FileInput from "./FileInput.jsx";
 import Button from "./Button.jsx";
 import { useForm } from "react-hook-form";
-import * as xlsx from "xlsx/xlsx.mjs";
 import toast from "react-hot-toast";
 import { useUploadFile } from "../features/Files/useUploadFile.jsx";
 import { useCurrentUser } from "../features/Auth/useCurrentUser.jsx";
-import { useState } from "react";
-import readFileAsync from "../utils/helpers.js";
+
 import Header from "./Header.jsx";
+
+const UploadMainContainer = styled.div`
+  padding: 1rem;
+`;
 
 const UploadContainer = styled.form`
   background-color: var(--color-brand-orange-dark);
@@ -45,7 +47,7 @@ function Upload() {
   const { register, handleSubmit, formState } = useForm({});
 
   return (
-    <div>
+    <UploadMainContainer>
       <Header size="small" bgcolor="secondary">
         Upload
       </Header>
@@ -59,7 +61,7 @@ function Upload() {
           Upload
         </Button>
       </UploadContainer>
-    </div>
+    </UploadMainContainer>
   );
 }
 

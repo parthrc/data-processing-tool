@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import Button from "./Button.jsx";
+import { RiDeleteBin5Line } from "react-icons/ri";
 import { useUpdateCurrentFileId } from "../features/Files/useUpdateCurrentFileId.jsx";
+import FileFormatIcon from "./FileFormatIcon.jsx";
 
 const FileRowItem = styled.li`
   background-color: var(--color-grey-200);
@@ -25,14 +26,13 @@ function FileRow(file) {
   function handleFileClick(file_id) {
     //Update current file ID
     mutateUpdateCurrentFileId(file_id);
-   
   }
-
+  console.log(file.file.file_format);
   return (
     <FileRowItem onClick={() => handleFileClick(file.file.id)}>
+      <FileFormatIcon fileFormat={file.file.file_format}></FileFormatIcon>
       {file.file.file_name}
-
-      <Button variation="secondary">Open</Button>
+      <RiDeleteBin5Line />
     </FileRowItem>
   );
 }

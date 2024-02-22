@@ -5,6 +5,11 @@ import { useFilesOfUser } from "./useFilesOfUser.jsx";
 import FileRow from "../../ui/FileRow.jsx";
 import Header from "../../ui/Header.jsx";
 
+const FilesListContainer = styled.div`
+  padding: 1rem;
+  background-color: white;
+`;
+
 const ListUl = styled.ul`
   list-style-type: none;
   display: flex;
@@ -16,7 +21,7 @@ function FilesList() {
   if (isLoading) return <Spinner />;
 
   return (
-    <div>
+    <FilesListContainer>
       <Header bgcolor="secondary" size="small">
         Your files:
       </Header>
@@ -29,7 +34,7 @@ function FilesList() {
       ) : (
         <p>No files</p>
       )}
-    </div>
+    </FilesListContainer>
   );
 }
 

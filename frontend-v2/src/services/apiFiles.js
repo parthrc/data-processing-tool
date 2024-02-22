@@ -100,6 +100,19 @@ export async function uploadFile(file, current_user_id) {
     return null;
   }
 
+  // Get total files of current user
+  const numFiles = await getFilesWithUserId(current_user_id);
+
+  console.log(numFiles?.files.length);
+
+  // Update total files of the user after uploading
+
+  const { data: updateTotalFiles, error } = await supabase
+    .from("usersv2")
+    .update({ total_files: numFiles?.files.length })
+    .eq("id", current_user_id)
+    .select();
+
   return { fileRecord };
 }
 

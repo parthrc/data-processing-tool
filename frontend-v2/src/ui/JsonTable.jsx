@@ -7,9 +7,39 @@ const StyledJsonTableContainer = styled.div`
   background-color: green;
   height: 40rem;
   overflow: auto;
+
+  font-size: 1rem;
 `;
 
-const JsonTable = () => {
+const JsonTable = ({ user }) => {
+  if (user) {
+    const headers2 = Object.keys(user[0]);
+    return (
+      <StyledJsonTableContainer>
+        <table>
+          <thead>
+            <tr>
+              {/* Render table headers */}
+              {headers2.map((header) => (
+                <th key={header}>{header}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {/* Render table rows */}
+            {user.map((item, index) => (
+              <tr key={index}>
+                {/* Render table cells */}
+                {headers2.map((header) => (
+                  <td key={header}>{item[header]}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </StyledJsonTableContainer>
+    );
+  }
   //Get current file from localstorage
 
   const currentFile = getFromLocalStorage("current_file");

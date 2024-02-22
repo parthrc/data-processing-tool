@@ -56,6 +56,9 @@ function LoginForm() {
             Not registered?
             <StyledNavLink to="/register">Register here</StyledNavLink>
           </span>
+          <span>
+            <StyledNavLink to="/admin-login">Admin login here</StyledNavLink>
+          </span>
         </ButtonGroup>
       </Form>
     </>

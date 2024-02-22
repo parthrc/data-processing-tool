@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import supabase from "./supabase.js";
 
-//Registring a new user
+//!Registring a new user
 
 export async function registerUser(newUser) {
   //Adding user to AUTH with additional user info as metadata
@@ -38,7 +38,7 @@ export async function registerUser(newUser) {
   return { authData: authData, data: data };
 }
 
-//User login
+//!User login
 
 export async function loginUser({ email, password }) {
   const { data: user, error } = await supabase.auth.signInWithPassword({
@@ -54,7 +54,7 @@ export async function loginUser({ email, password }) {
   return { user, error };
 }
 
-//Get current user
+//!Get current user
 
 export async function getCurrentUser() {
   const { data: session } = await supabase.auth.getSession();
@@ -68,10 +68,20 @@ export async function getCurrentUser() {
   return currentUser?.user;
 }
 
-//Logout user
+// !Logout user
 
 export async function logoutUser() {
   const { error } = await supabase.auth.signOut();
 
   if (error) throw new Error("Error while signing out");
+}
+
+// !Get all users list
+
+export async function getAllUsers() {
+  const { data: users, error } = await supabase.from("usersv2").select("*");
+
+  if (error) throw new Error("Errorgetting all users list.");
+
+  return users;
 }
