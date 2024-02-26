@@ -3,6 +3,8 @@ import React from "react";
 import { getFromLocalStorage } from "../utils/localStorageUtils.js";
 import styled from "styled-components";
 
+import Header from "./Header.jsx";
+
 const StyledJsonTableContainer = styled.div`
   background-color: white;
   height: 40rem;
@@ -12,46 +14,25 @@ const StyledJsonTableContainer = styled.div`
 `;
 
 const StyledTable = styled.table`
-  background-color: orange;
+  background-color: var(--color-grey-200);
+  width: 100%;
+
 `;
 
-const StyledHeaderRow = styled.p`
-  background-color: red;
-  color: purple;
-  font-size: 2rem;
-  z-index: 99;
+const StyledHeaderRow = styled.th`
+  color: black;
+  border: 1px solid var(--color-grey-600);
 `;
 
-const JsonTable = ({ user }) => {
-  if (user) {
-    const headers2 = Object.keys(user[0]);
-    return (
-      <StyledJsonTableContainer>
-        <StyledTable>
-          <thead>
-            <tr>
-              <StyledHeaderRow>Hello</StyledHeaderRow>
-              {/* Render table headers */}
-              {headers2.map(function (header) {
-                return <StyledHeaderRow key={header}>{header}</StyledHeaderRow>;
-              })}
-            </tr>
-          </thead>
-          <tbody>
-            {/* Render table rows */}
-            {user.map((item, index) => (
-              <tr key={index}>
-                {/* Render table cells */}
-                {headers2.map((header) => (
-                  <td key={header}>{item[header]}</td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </StyledTable>
-      </StyledJsonTableContainer>
-    );
-  }
+const StyledTableRow = styled.tr``;
+
+const StyledTableData = styled.td`
+  padding: 0.3rem;
+  border: 1px solid var(--color-grey-600);
+ 
+`;
+
+const JsonTable = () => {
   //Get current file from localstorage
 
   const currentFile = getFromLocalStorage("current_file");
@@ -68,28 +49,30 @@ const JsonTable = ({ user }) => {
 
   return (
     <StyledJsonTableContainer>
-      <p>{current_file_name}</p>
-      <table>
+      <Header size="small" bgcolor="secondary">
+        {current_file_name}
+      </Header>
+      <StyledTable>
         <thead>
-          <tr>
+          <StyledTableRow>
             {/* Render table headers */}
             {headers.map((header) => (
-              <th key={header}>{header}</th>
+              <StyledHeaderRow key={header}>{header}</StyledHeaderRow>
             ))}
-          </tr>
+          </StyledTableRow>
         </thead>
         <tbody>
           {/* Render table rows */}
           {jsonFile.map((item, index) => (
-            <tr key={index}>
+            <StyledTableRow key={index}>
               {/* Render table cells */}
               {headers.map((header) => (
-                <td key={header}>{item[header]}</td>
+                <StyledTableData key={header}>{item[header]}</StyledTableData>
               ))}
-            </tr>
+            </StyledTableRow>
           ))}
         </tbody>
-      </table>
+      </StyledTable>
     </StyledJsonTableContainer>
   );
 };
