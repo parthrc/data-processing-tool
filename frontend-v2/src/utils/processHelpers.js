@@ -76,8 +76,6 @@ export function sortyByKey(key, json, sortOrder = "ascending") {
 */
 
 export function filterBy(key, value, json) {
-  console.log(key);
-  console.log(value);
   if (json.length === 0) {
     //Check if array is empty
     return {
@@ -106,13 +104,11 @@ export function filterBy(key, value, json) {
     console.log(String(x[key]).toLowerCase() === value.toLowerCase());
   });
 
-  console.log("FIletred array", filteredArray);
-
   //Check if empty filtered array
   if (filteredArray.length === 0) {
     return {
-      status: "Success",
-      msg: "Filter success but no values found",
+      status: "Pass",
+      msg: `No values found for: ${value}`,
       data: json,
     };
   }
@@ -157,7 +153,7 @@ export function removeBlanks(jsonArray) {
 
   if (filteredArray.length === jsonArray.length) {
     return {
-      status: "Success",
+      status: "Pass",
       msg: "No blank values found",
       data: jsonArray,
     };
@@ -206,6 +202,15 @@ export function removeDuplicates(jsonArray) {
   });
 
   const totalDuplicates = jsonArray.length - uniqueArray.length;
+
+  if (totalDuplicates === 0) {
+    return {
+      status: "Pass",
+      msg: `Total duplicates found: ${totalDuplicates}`,
+      data: uniqueArray,
+      totalDuplicates,
+    };
+  }
 
   return {
     status: "Success",
