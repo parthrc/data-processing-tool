@@ -16,7 +16,6 @@ const StyledJsonTableContainer = styled.div`
 const StyledTable = styled.table`
   background-color: var(--color-grey-200);
   width: 100%;
-
 `;
 
 const StyledHeaderRow = styled.th`
@@ -29,7 +28,12 @@ const StyledTableRow = styled.tr``;
 const StyledTableData = styled.td`
   padding: 0.3rem;
   border: 1px solid var(--color-grey-600);
- 
+`;
+
+const StyledNoFiles = styled.p`
+  color: black;
+  font-size: 2rem;
+  text-align: center;
 `;
 
 const JsonTable = () => {
@@ -39,7 +43,9 @@ const JsonTable = () => {
   const current_file_name = getFromLocalStorage("current_file_name");
 
   if (currentFile === "") {
-    return <p>PLease select a file from the dashboard</p>;
+    return (
+      <StyledNoFiles>Please select a file from the dashboard</StyledNoFiles>
+    );
   }
 
   const jsonFile = currentFile;

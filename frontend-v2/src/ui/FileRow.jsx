@@ -41,10 +41,10 @@ function FileRow(file) {
     //Update current file ID
     mutateUpdateCurrentFileId(file_id);
   }
-  console.log(file.file.file_format);
+
   return (
     <FileRowItem onClick={() => handleFileClick(file.file.id)}>
-      <FileFormatIcon fileFormat={file.file.file_format}></FileFormatIcon>
+      <FileFormatIcon fileformat={file.file.file_format}></FileFormatIcon>
       <StyledFileName>{file.file.file_name}</StyledFileName>
       <StyledIconContainer>
         <RiDeleteBin5Line />

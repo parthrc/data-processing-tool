@@ -35,17 +35,17 @@ const StyledFormatIcon = styled.div`
   padding: 0.2rem;
   font-size: 1rem;
   border-radius: 10%;
-  ${(props) => fileFormats[props.fileFormat]}
+  ${(props) => fileFormats[props.fileformat]}
 `;
 
 StyledFormatIcon.defaultProps = {
-  fileFormat: "default",
+  fileformat: "default",
 };
 
-function FileFormatIcon({ fileFormat }) {
+function FileFormatIcon({ fileformat }) {
   return (
-    <StyledFormatIcon fileFormat={fileFormat}>
-      {convertFormat[fileFormat] || "file"}
+    <StyledFormatIcon fileformat={fileformat}>
+      {convertFormat[fileformat] || "file"}
     </StyledFormatIcon>
   );
 }

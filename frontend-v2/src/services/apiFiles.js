@@ -32,7 +32,10 @@ export async function getAllUsers() {
 export async function getFilesWithUserId(user_id) {
   const { data: files, error } = await supabase
     .from("filesv2")
-    .select("*", user_id);
+    .select("*")
+    .eq("user_id", user_id);
+
+  console.log(files);
 
   if (error) {
     console.error(error);

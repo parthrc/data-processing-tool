@@ -17,26 +17,35 @@ const ListUl = styled.ul`
   flex-direction: column-reverse;
 `;
 
+const StyledNoFiles = styled.p`
+  color: black;
+  font-size: 2rem;
+  text-align: center;
+`;
+
 function FilesList() {
   const { isLoading, data: allFiles, error } = useFilesOfUser();
   if (isLoading) return <Spinner />;
 
-  return (
-    <FilesListContainer>
-      <Header bgcolor="secondary" size="small">
-        Your files:
-      </Header>
-      {allFiles ? (
-        <ListUl>
-          {allFiles.files.map(function (f) {
-            return <FileRow key={f.id} file={f}></FileRow>;
-          })}
-        </ListUl>
-      ) : (
-        <p>No files</p>
-      )}
-    </FilesListContainer>
-  );
+  if (isLoading === false) {
+    return (
+      <FilesListContainer>
+        <Header bgcolor="secondary" size="small">
+          Your files:
+        </Header>
+
+        {allFiles ? (
+          <ListUl>
+            {allFiles.files.map(function (f) {
+              return <FileRow key={f.id} file={f}></FileRow>;
+            })}
+          </ListUl>
+        ) : (
+          <StyledNoFiles>No files uploaded yet.</StyledNoFiles>
+        )}
+      </FilesListContainer>
+    );
+  }
 }
 
 export default FilesList;
