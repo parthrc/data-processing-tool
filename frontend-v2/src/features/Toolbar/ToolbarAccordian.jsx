@@ -1,13 +1,17 @@
 import styled from "styled-components";
 import { IoMdCloseCircleOutline } from "react-icons/io";
+import Header from "../../ui/Header.jsx";
 
 const StyledToolbarAccordian = styled.div`
   background-color: white;
-  padding: 0 1rem;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  padding-bottom: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
 `;
 
 const StyledCloseBtnContainer = styled.div`
@@ -22,8 +26,6 @@ const StyledCloseBtnContainer = styled.div`
 const IconContainer = styled.div`
   cursor: pointer;
   color: #f04f4f;
-  background-color: aqua;
-  
 
   &:hover {
     cursor: pointer;
@@ -31,9 +33,12 @@ const IconContainer = styled.div`
   }
 `;
 
-function ToolbarAccordian({ children, onClick }) {
+function ToolbarAccordian({ children, onClick, activeProcess }) {
   return (
     <StyledToolbarAccordian>
+      <Header size="small" bgcolor={activeProcess}>
+        {activeProcess} process options:
+      </Header>
       <StyledCloseBtnContainer>
         <IconContainer>
           <IoMdCloseCircleOutline onClick={onClick} />

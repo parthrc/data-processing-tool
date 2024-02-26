@@ -7,6 +7,15 @@ const bgcolors = {
   secondary: css`
     background-color: var(--color-brand-orange);
   `,
+  remove: css`
+    background-color: red;
+  `,
+  filter: css`
+    background-color: green;
+  `,
+  sort: css`
+    background-color: blue;
+  `,
 };
 
 const sizes = {

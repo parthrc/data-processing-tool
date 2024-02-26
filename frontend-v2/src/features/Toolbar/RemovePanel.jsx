@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import Button from "../../ui/Button.jsx";
 import {
   getFromLocalStorage,
@@ -5,6 +6,30 @@ import {
   updateProcessLogInLS,
 } from "../../utils/localStorageUtils.js";
 import { removeBlanks, removeDuplicates } from "../../utils/processHelpers.js";
+import Header from "../../ui/Header.jsx";
+
+const StyledRemovePanelCont = styled.div`
+  border: 5px solid var(--color-brand-500);
+  padding: 0.5rem;
+`;
+
+const StyledButtonContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  justify-content: center;
+`;
+
+const StyledRemoveButton = styled.button`
+  font-size: 1.3rem;
+  padding: 0.5rem;
+  background-color: var(--color-brand-800);
+  color: var(--color-grey-50);
+
+  &:hover {
+    background-color: var(--color-brand-600);
+  }
+`;
 
 function RemovePanel() {
   function handleRemoveDuplicates() {
@@ -44,12 +69,16 @@ function RemovePanel() {
   }
 
   return (
-    <div>
-      <Button onClick={() => handleRemoveDuplicates()}>
-        Remove Duplicates
-      </Button>
-      <Button onClick={() => handleRemoveBlanks()}>Remove Blanks</Button>
-    </div>
+    <StyledRemovePanelCont>
+      <StyledButtonContainer>
+        <StyledRemoveButton onClick={() => handleRemoveDuplicates()}>
+          Remove Duplicates
+        </StyledRemoveButton>
+        <StyledRemoveButton onClick={() => handleRemoveBlanks()}>
+          Remove Blanks
+        </StyledRemoveButton>
+      </StyledButtonContainer>
+    </StyledRemovePanelCont>
   );
 }
 

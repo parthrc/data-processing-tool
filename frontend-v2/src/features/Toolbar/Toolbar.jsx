@@ -4,12 +4,7 @@ import { IoIosRemoveCircle } from "react-icons/io";
 import { FaSort } from "react-icons/fa";
 import { FaFilter } from "react-icons/fa";
 import ToolbarItem from "../../ui/ToolbarItem.jsx";
-import {
-  getFromLocalStorage,
-  saveToLocalStorage,
-  updateProcessLogInLS,
-} from "../../utils/localStorageUtils.js";
-import { filterBy, removeBlanks } from "../../utils/processHelpers.js";
+import { getFromLocalStorage } from "../../utils/localStorageUtils.js";
 import { useState } from "react";
 import ToolbarAccordian from "./ToolbarAccordian.jsx";
 import RemovePanel from "./RemovePanel.jsx";
@@ -17,12 +12,13 @@ import FilterPanel from "./FilterPanel.jsx";
 import SortPanel from "./SortPanel.jsx";
 
 const ToolsbarContainer = styled.div`
-  background-color: red;
+  background-color: white;
+  margin: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 2rem;
-  padding-block: 1rem;
+  padding: 0.5rem;
 `;
 
 function Toolbar() {
@@ -63,8 +59,6 @@ function Toolbar() {
         break;
       }
     }
-
-    
   }
 
   // CLose panel
@@ -80,22 +74,27 @@ function Toolbar() {
       <ToolsbarContainer>
         <ToolbarItem
           onClick={() => handleToolbarItemClick("remove_duplicates")}
+          title="Remove"
         >
           <IoIosRemoveCircle />
-          Remove Duplicates
         </ToolbarItem>
 
-        <ToolbarItem onClick={() => handleToolbarItemClick("filter")}>
+        <ToolbarItem
+          onClick={() => handleToolbarItemClick("filter")}
+          title="Filter"
+        >
           <FaFilter />
-          Filter
         </ToolbarItem>
-        <ToolbarItem onClick={() => handleToolbarItemClick("sort")}>
+        <ToolbarItem
+          onClick={() => handleToolbarItemClick("sort")}
+          title="Sort"
+          
+        >
           <FaSort />
-          Sort
         </ToolbarItem>
       </ToolsbarContainer>
       {showPanel && (
-        <ToolbarAccordian onClick={closePanel}>
+        <ToolbarAccordian onClick={closePanel} activeProcess={activeProcess}>
           {activeProcess === allProcesses[0] && <RemovePanel />}
           {activeProcess === allProcesses[1] && <FilterPanel />}
           {activeProcess === allProcesses[2] && <SortPanel />}

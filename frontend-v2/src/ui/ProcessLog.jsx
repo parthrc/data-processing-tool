@@ -10,16 +10,13 @@ const StyledNoLogs = styled.p`
 // or fail
 const logItemType = {
   success: css`
-    color: white;
-    background-color: green;
+    border: 5px solid green;
   `,
   fail: css`
-    color: white;
-    background-color: red;
+    border: 5px solid red;
   `,
   pass: css`
-    color: black;
-    background-color: yellow;
+    border: 5px solid yellow;
   `,
 };
 
@@ -33,6 +30,7 @@ const StyledLogListItem = styled.li`
   font-size: 1.2rem;
   padding: 0.3rem;
   margin-bottom: 0.1rem;
+  color: black;
   ${(props) => logItemType[props.type]}
 `;
 
