@@ -27,7 +27,7 @@ const queryClient = new QueryClient({
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient} contextSharing={true}>
       <GlobalStyles />
       <BrowserRouter>
         <Routes>
