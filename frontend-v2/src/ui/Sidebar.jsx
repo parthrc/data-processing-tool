@@ -3,15 +3,13 @@ import styled from "styled-components";
 import MainNav from "./MainNav";
 
 const StyledSidebar = styled.aside`
-  background-color: var(--color-brand-50);
+  background-color: white;
   padding: 3.2rem 1rem;
-
   grid-row: 1 / -1;
   display: flex;
   flex-direction: column;
   gap: 2rem;
   height: 100vh;
- 
 `;
 
 function Sidebar() {

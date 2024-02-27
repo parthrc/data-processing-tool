@@ -3,12 +3,15 @@ import Spinner from "../../ui/Spinner.jsx";
 import { useFilesOfUser } from "./useFilesOfUser.jsx";
 import FileRow from "../../ui/FileRow.jsx";
 import Header from "../../ui/Header.jsx";
+import Headerv2 from "../../ui/Headerv2.jsx";
+import Divider from "../../ui/Divider.jsx";
 
 const FilesListContainer = styled.div`
   padding: 1rem;
   background-color: white;
   overflow: auto;
   height: 80vh;
+  border-radius: 1%;
 `;
 
 const ListUl = styled.ul`
@@ -33,6 +36,7 @@ function FilesList() {
         <Header bgcolor="secondary" size="small">
           Your files:
         </Header>
+        <Divider mtop="1rem"></Divider>
 
         {allFiles ? (
           <ListUl>

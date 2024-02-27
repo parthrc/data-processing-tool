@@ -11,7 +11,7 @@ const StyledAppLayout = styled.div`
 `;
 
 const Main = styled.main`
-  background-color: var(--color-grey-200);
+  background-color: var(--color-blue-100);
   overflow: scroll;
   height: 100vh;
 `;

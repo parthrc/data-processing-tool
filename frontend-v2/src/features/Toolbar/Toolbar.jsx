@@ -16,6 +16,14 @@ import JsonToExcel from "../Download/JsonToExcel.jsx";
 import JsonToCsv from "../Download/JsonToCsv.jsx";
 import JsonFile from "../Download/JsonFile.jsx";
 
+const ToolbarMainCont = styled.div`
+  background-color: white;
+  padding: 1rem;
+  margin-top: 1.5rem;
+  margin-inline: 1.5rem;
+  border-radius: 10px;
+`;
+
 const ToolsbarContainer = styled.div`
   background-color: white;
   margin: 0.5rem;
@@ -23,7 +31,6 @@ const ToolsbarContainer = styled.div`
   align-items: center;
   justify-content: center;
   gap: 2rem;
-  padding: 0.5rem;
 `;
 
 function Toolbar() {
@@ -72,7 +79,7 @@ function Toolbar() {
   }
 
   return (
-    <div>
+    <ToolbarMainCont>
       <Header bgcolor="secondary" size="small">
         Toolbar
       </Header>
@@ -109,7 +116,7 @@ function Toolbar() {
           {activeProcess === allProcesses[2] && <SortPanel />}
         </ToolbarAccordian>
       )}
-    </div>
+    </ToolbarMainCont>
   );
 }
 

@@ -4,6 +4,7 @@ import Header from "../ui/Header.jsx";
 import Toolbar from "../features/Toolbar/Toolbar.jsx";
 import ProcessLog from "../ui/ProcessLog.jsx";
 import styled from "styled-components";
+import Headerv2 from "../ui/Headerv2.jsx";
 
 const MainContainer = styled.div`
   display: grid;
@@ -15,7 +16,8 @@ const MainContainer = styled.div`
 function Process() {
   return (
     <DashboardContainer>
-      <Header>Process</Header>
+      {/* <Header>Process</Header> */}
+      <Headerv2>Process</Headerv2>
       <Toolbar bgcolor="secondary" size="small"></Toolbar>
       <MainContainer>
         <JsonTable />

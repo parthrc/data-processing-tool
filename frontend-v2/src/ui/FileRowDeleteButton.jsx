@@ -5,19 +5,20 @@ import Spinner from "./Spinner.jsx";
 
 const StyledIconContainer = styled.div`
   padding: 0.2rem;
-  color: red;
-  background-color: var(--color-grey-200);
+  background-color: red;
+  color: white;
   padding: 0.5rem;
-
+  border-radius: 50%;
   margin-bottom: 0.5rem;
   display: flex;
   justify-content: center;
 
+  height: 3rem;
+  width: 3rem;
+
   &:hover {
     cursor: pointer;
     transform: scale(1.25);
-    background-color: red;
-    color: white;
   }
 `;
 

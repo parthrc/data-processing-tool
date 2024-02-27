@@ -7,12 +7,13 @@ import FileRowDeleteButton from "./FileRowDeleteButton.jsx";
 const FileRowContainer = styled.div`
   display: grid;
   grid-template-columns: 9fr 1fr;
+  border-radius: 1%;
 `;
 
 const FileRowItem = styled.li`
   background-color: var(--color-grey-200);
   padding: 0.5rem;
-
+  border-radius: 10px;
   margin-bottom: 0.5rem;
   display: flex;
   align-items: center;

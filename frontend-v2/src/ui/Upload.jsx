@@ -7,6 +7,7 @@ import { useUploadFile } from "../features/Files/useUploadFile.jsx";
 import { useCurrentUser } from "../features/Auth/useCurrentUser.jsx";
 
 import Header from "./Header.jsx";
+import Divider from "./Divider.jsx";
 
 const UploadMainContainer = styled.div`
   padding: 1rem;
@@ -60,6 +61,7 @@ function Upload() {
       <Header size="small" bgcolor="secondary">
         Upload
       </Header>
+      <Divider mtop="1rem"></Divider>
       <UploadContainer onSubmit={handleSubmit(handleUploadFile)}>
         <FileInput
           id="upload"

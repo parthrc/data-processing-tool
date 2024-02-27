@@ -4,6 +4,7 @@ import { getFromLocalStorage } from "../utils/localStorageUtils.js";
 import styled from "styled-components";
 
 import Header from "./Header.jsx";
+import Divider from "./Divider.jsx";
 
 const StyledJsonTableContainer = styled.div`
   background-color: white;
@@ -11,6 +12,8 @@ const StyledJsonTableContainer = styled.div`
   overflow: auto;
   padding: 1.5rem;
   font-size: 1rem;
+
+  border-radius: 10px;
 `;
 
 const StyledTable = styled.table`
@@ -20,14 +23,14 @@ const StyledTable = styled.table`
 
 const StyledHeaderRow = styled.th`
   color: black;
-  border: 1px solid var(--color-grey-600);
+  border: 1px solid white;
 `;
 
 const StyledTableRow = styled.tr``;
 
 const StyledTableData = styled.td`
   padding: 0.3rem;
-  border: 1px solid var(--color-grey-600);
+  border: 1px solid white;
 `;
 
 const StyledNoFiles = styled.p`
@@ -44,7 +47,9 @@ const JsonTable = () => {
 
   if (currentFile === "") {
     return (
-      <StyledNoFiles>Please select a file from the dashboard</StyledNoFiles>
+      <StyledJsonTableContainer>
+        <StyledNoFiles>Please select a file from the dashboard</StyledNoFiles>
+      </StyledJsonTableContainer>
     );
   }
 
@@ -58,6 +63,7 @@ const JsonTable = () => {
       <Header size="small" bgcolor="secondary">
         {current_file_name}
       </Header>
+      <Divider mtop="1rem"></Divider>
       <StyledTable>
         <thead>
           <StyledTableRow>
