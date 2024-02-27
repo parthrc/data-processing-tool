@@ -10,6 +10,11 @@ import ToolbarAccordian from "./ToolbarAccordian.jsx";
 import RemovePanel from "./RemovePanel.jsx";
 import FilterPanel from "./FilterPanel.jsx";
 import SortPanel from "./SortPanel.jsx";
+import UpdateFileButton from "./UpdateFileButton.jsx";
+import DownloadFileButton from "./DownloadFileButton.jsx";
+import JsonToExcel from "../Download/JsonToExcel.jsx";
+import JsonToCsv from "../Download/JsonToCsv.jsx";
+import JsonFile from "../Download/JsonFile.jsx";
 
 const ToolsbarContainer = styled.div`
   background-color: white;
@@ -88,10 +93,14 @@ function Toolbar() {
         <ToolbarItem
           onClick={() => handleToolbarItemClick("sort")}
           title="Sort"
-          
         >
           <FaSort />
         </ToolbarItem>
+        <UpdateFileButton bgcolor="blue"></UpdateFileButton>
+        <DownloadFileButton bgcolor="green"></DownloadFileButton>
+        <JsonToExcel>Excel</JsonToExcel>
+        <JsonToCsv>Csv</JsonToCsv>
+        <JsonFile>Json</JsonFile>
       </ToolsbarContainer>
       {showPanel && (
         <ToolbarAccordian onClick={closePanel} activeProcess={activeProcess}>

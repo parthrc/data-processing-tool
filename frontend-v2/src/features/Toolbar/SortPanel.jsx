@@ -82,7 +82,7 @@ function SortPanel() {
   return (
     <StyledSortPanelContainer>
       <StyledSortOptionsContainer>
-        <StyledLabel htmlFor="dropdown">Select an option:</StyledLabel>
+        <StyledLabel htmlFor="dropdown">Select index: </StyledLabel>
         <StyledSelect
           id="dropdown"
           value={selectedValue}
@@ -99,7 +99,7 @@ function SortPanel() {
         </StyledSelect>
       </StyledSortOptionsContainer>
       <StyledSortOptionsContainer>
-        <StyledLabel htmlFor="sortOrder">Select order:</StyledLabel>
+        <StyledLabel htmlFor="sortOrder">Select order: </StyledLabel>
         <StyledSelect
           id="orderDropdown"
           value={order}

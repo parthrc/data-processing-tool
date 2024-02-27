@@ -83,7 +83,7 @@ function FilterPanel() {
   return (
     <StyledFilterPanelContainer>
       <StyledFilterOptionsContainer>
-        <StyledLabel htmlFor="dropdown">Select an option:</StyledLabel>
+        <StyledLabel htmlFor="dropdown">Select index: </StyledLabel>
         <StyledSelect
           id="dropdown"
           value={selectedValue}
@@ -100,7 +100,7 @@ function FilterPanel() {
         </StyledSelect>
       </StyledFilterOptionsContainer>
       <StyledFilterOptionsContainer>
-        <StyledLabel htmlFor="filter_value">Value to filter:</StyledLabel>
+        <StyledLabel htmlFor="filter_value">Value to filter: </StyledLabel>
         <StyledInput
           type="text"
           value={selectedFilterValue}

@@ -1,5 +1,7 @@
 import styled, { css } from "styled-components";
 import { getFromLocalStorage } from "../utils/localStorageUtils.js";
+import Header from "./Header.jsx";
+import Divider from "./Divider.jsx";
 
 const StyledNoLogs = styled.p`
   text-align: center;
@@ -43,6 +45,10 @@ function ProcessLog() {
 
   return (
     <StyledProcessLog>
+      <Header bgcolor="secondary" size="small">
+        Process Log
+      </Header>
+      <Divider mtop="0.5rem" />
       <ul>
         {log !== "" ? (
           <>
