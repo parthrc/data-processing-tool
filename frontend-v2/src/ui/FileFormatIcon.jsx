@@ -31,20 +31,27 @@ const fileFormats = {
   `,
 };
 
-const StyledFormatIcon = styled.div`
+const StyledFormatIcon = styled.button`
   padding: 0.2rem;
   font-size: 1rem;
-  border-radius: 10%;
+  border-radius: 10px;
+  margin-bottom: 2px;
   ${(props) => fileFormats[props.fileformat]}
+
+  &:hover {
+    cursor: pointer;
+    opacity: 80%;
+    transform: scale(1.1);
+  }
 `;
 
 StyledFormatIcon.defaultProps = {
   fileformat: "default",
 };
 
-function FileFormatIcon({ fileformat }) {
+function FileFormatIcon({ fileformat, onClick }) {
   return (
-    <StyledFormatIcon fileformat={fileformat}>
+    <StyledFormatIcon fileformat={fileformat} onClick={onClick}>
       {convertFormat[fileformat] || "file"}
     </StyledFormatIcon>
   );

@@ -16,6 +16,20 @@ import JsonToExcel from "../Download/JsonToExcel.jsx";
 import JsonToCsv from "../Download/JsonToCsv.jsx";
 import JsonFile from "../Download/JsonFile.jsx";
 
+const ToolbarDownloadAsCont = styled.div`
+  background-color: var(--color-grey-300);
+  padding: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+`;
+
+const DlButtonsCont = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
 const ToolbarMainCont = styled.div`
   background-color: white;
   padding: 1rem;
@@ -103,12 +117,17 @@ function Toolbar() {
         >
           <FaSort />
         </ToolbarItem>
-        <UpdateFileButton bgcolor="blue"></UpdateFileButton>
-        <DownloadFileButton bgcolor="green"></DownloadFileButton>
-        <JsonToExcel>Excel</JsonToExcel>
-        <JsonToCsv>Csv</JsonToCsv>
-        <JsonFile>Json</JsonFile>
+        {/* <UpdateFileButton bgcolor="blue"></UpdateFileButton> */}
+        <ToolbarDownloadAsCont>
+          <p>Download file as: </p>
+          <DlButtonsCont>
+            <JsonToExcel>Excel</JsonToExcel>
+            <JsonToCsv>Csv</JsonToCsv>
+            <JsonFile>Json</JsonFile>
+          </DlButtonsCont>
+        </ToolbarDownloadAsCont>
       </ToolsbarContainer>
+
       {showPanel && (
         <ToolbarAccordian onClick={closePanel} activeProcess={activeProcess}>
           {activeProcess === allProcesses[0] && <RemovePanel />}

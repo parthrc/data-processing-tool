@@ -13,11 +13,12 @@ const StyledSortPanelContainer = styled.div`
   display: flex;
   flex-direction: row;
 
-  padding: 0.5rem;
+  padding: 1rem;
   gap: 1rem;
   justify-content: center;
   align-items: center;
-  border: 5px solid var(--color-brand-500);
+  background-color: white;
+  border-radius: 10px;
 `;
 
 const StyledLabel = styled.label`

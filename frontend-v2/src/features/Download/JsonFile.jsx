@@ -1,6 +1,7 @@
 import { saveAs } from "file-saver";
 import { getCurrentfileInfoFromLocal } from "../../utils/localStorageUtils.js";
 import Button from "../../ui/Button.jsx";
+import FileFormatIcon from "../../ui/FileFormatIcon.jsx";
 
 const JsonFileSaver = (json) => {
   console.log("BEFORE JSON:", json);
@@ -21,7 +22,14 @@ function JsonFile({ children }) {
   const cFile = getCurrentfileInfoFromLocal();
   const json = JSON.stringify(cFile.cFile);
 
-  return <Button onClick={() => handleJsonClick(json)}>{children}</Button>;
+  return (
+    <FileFormatIcon
+      onClick={() => handleJsonClick(json)}
+      fileformat="application/json"
+    >
+      {children}
+    </FileFormatIcon>
+  );
 }
 
 export default JsonFile;

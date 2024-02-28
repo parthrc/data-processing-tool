@@ -1,9 +1,21 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import Header from "../../ui/Header.jsx";
 
+const active = {
+  remove: css`
+    border: 5px solid red;
+  `,
+  filter: css`
+    border: 5px solid green;
+  `,
+  sort: css`
+    border: 5px solid blue;
+  `,
+};
+
 const StyledToolbarAccordian = styled.div`
-  background-color: white;
+  background-color: var(--color-grey-200);
   margin: 0.5rem;
   padding: 0.5rem;
   padding-bottom: 1rem;
@@ -12,6 +24,7 @@ const StyledToolbarAccordian = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
+  ${(props) => active[props.activeProcess]}
 `;
 
 const StyledCloseBtnContainer = styled.div`
@@ -35,7 +48,7 @@ const IconContainer = styled.div`
 
 function ToolbarAccordian({ children, onClick, activeProcess }) {
   return (
-    <StyledToolbarAccordian>
+    <StyledToolbarAccordian activeProcess={activeProcess}>
       <Header size="small" bgcolor={activeProcess}>
         {activeProcess} process options:
       </Header>

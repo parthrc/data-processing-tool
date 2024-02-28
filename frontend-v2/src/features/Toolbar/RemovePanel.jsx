@@ -9,8 +9,9 @@ import { removeBlanks, removeDuplicates } from "../../utils/processHelpers.js";
 import Header from "../../ui/Header.jsx";
 
 const StyledRemovePanelCont = styled.div`
-  border: 5px solid var(--color-brand-500);
-  padding: 0.5rem;
+  background-color: white;
+  border-radius: 10px;
+  padding: 1rem;
 `;
 
 const StyledButtonContainer = styled.div`

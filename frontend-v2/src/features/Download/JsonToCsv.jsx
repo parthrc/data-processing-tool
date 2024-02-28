@@ -2,6 +2,7 @@ import Papa from "papaparse";
 import { saveAs } from "file-saver";
 import Button from "../../ui/Button.jsx";
 import { getCurrentfileInfoFromLocal } from "../../utils/localStorageUtils.js";
+import FileFormatIcon from "../../ui/FileFormatIcon.jsx";
 
 const JsonToCsvConverter = (json) => {
   // Convert JSON to CSV using PapaParse
@@ -24,7 +25,11 @@ function JsonToCsv({ children }) {
 
   const json = cFile.cFile;
 
-  return <Button onClick={() => handleCsvClick(json)}>{children}</Button>;
+  return (
+    <FileFormatIcon onClick={() => handleCsvClick(json)} fileformat="text/csv">
+      {children}
+    </FileFormatIcon>
+  );
 }
 
 export default JsonToCsv;
