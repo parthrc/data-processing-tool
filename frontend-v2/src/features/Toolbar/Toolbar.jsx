@@ -16,7 +16,8 @@ import JsonFile from "../Download/JsonFile.jsx";
 
 const ToolbarDownloadAsCont = styled.div`
   background-color: var(--color-grey-300);
-  padding: 0.4rem;
+  padding-inline: 1rem;
+  padding-block: 0.5rem;
   display: flex;
   flex-direction: column;
   border-radius: 10px;
@@ -42,7 +43,7 @@ const ToolsbarContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
+  gap: 3rem;
 `;
 
 function Toolbar() {

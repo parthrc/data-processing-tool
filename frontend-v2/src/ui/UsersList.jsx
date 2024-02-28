@@ -36,7 +36,6 @@ function UsersList() {
               );
             })}
           </ListUl>
-          <JsonTable user={allUsers}></JsonTable>
         </>
       ) : (
         <p>No users</p>

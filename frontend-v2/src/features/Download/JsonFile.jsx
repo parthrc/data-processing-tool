@@ -1,9 +1,6 @@
 import { saveAs } from "file-saver";
-import {
-  getCurrentfileInfoFromLocal,
-  getFromLocalStorage,
-} from "../../utils/localStorageUtils.js";
-import Button from "../../ui/Button.jsx";
+import { getFromLocalStorage } from "../../utils/localStorageUtils.js";
+
 import FileFormatIcon from "../../ui/FileFormatIcon.jsx";
 
 const JsonFileSaver = (json) => {

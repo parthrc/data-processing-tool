@@ -41,6 +41,8 @@ const StyledHeader = styled.header`
   color: aliceblue;
   width: 100%;
   text-transform: uppercase;
+
+  z-index: 1;
 `;
 
 StyledHeader.defaultProps = {
