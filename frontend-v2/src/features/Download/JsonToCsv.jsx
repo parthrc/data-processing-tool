@@ -1,7 +1,10 @@
 import Papa from "papaparse";
 import { saveAs } from "file-saver";
 import Button from "../../ui/Button.jsx";
-import { getCurrentfileInfoFromLocal } from "../../utils/localStorageUtils.js";
+import {
+  getCurrentfileInfoFromLocal,
+  getFromLocalStorage,
+} from "../../utils/localStorageUtils.js";
 import FileFormatIcon from "../../ui/FileFormatIcon.jsx";
 
 const JsonToCsvConverter = (json) => {
@@ -15,18 +18,17 @@ const JsonToCsvConverter = (json) => {
   saveAs(blob, `csvfile.csv`);
 };
 
-function handleCsvClick(json) {
+function handleCsvClick() {
+  const cFile = getFromLocalStorage("current_file");
+
+  const json = cFile;
   JsonToCsvConverter(json);
   console.log("CSV");
 }
 
 function JsonToCsv({ children }) {
-  const cFile = getCurrentfileInfoFromLocal();
-
-  const json = cFile.cFile;
-
   return (
-    <FileFormatIcon onClick={() => handleCsvClick(json)} fileformat="text/csv">
+    <FileFormatIcon onClick={() => handleCsvClick()} fileformat="text/csv">
       {children}
     </FileFormatIcon>
   );

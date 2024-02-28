@@ -1,11 +1,12 @@
 import { saveAs } from "file-saver";
-import { getCurrentfileInfoFromLocal } from "../../utils/localStorageUtils.js";
+import {
+  getCurrentfileInfoFromLocal,
+  getFromLocalStorage,
+} from "../../utils/localStorageUtils.js";
 import Button from "../../ui/Button.jsx";
 import FileFormatIcon from "../../ui/FileFormatIcon.jsx";
 
 const JsonFileSaver = (json) => {
-  console.log("BEFORE JSON:", json);
-  console.log("TYPE:", typeof json);
   // Create a Blob from the JSON string
   const blob = new Blob([json], { type: "text/json;charset=utf-8" });
 
@@ -13,18 +14,18 @@ const JsonFileSaver = (json) => {
   saveAs(blob, `jsonfile.json`);
 };
 
-function handleJsonClick(json) {
+function handleJsonClick() {
+  const cFile = getFromLocalStorage("current_file");
+  console.log("Current inside Excel", cFile);
+  const json = JSON.stringify(cFile);
   JsonFileSaver(json);
   console.log("Json");
 }
 
 function JsonFile({ children }) {
-  const cFile = getCurrentfileInfoFromLocal();
-  const json = JSON.stringify(cFile.cFile);
-
   return (
     <FileFormatIcon
-      onClick={() => handleJsonClick(json)}
+      onClick={() => handleJsonClick()}
       fileformat="application/json"
     >
       {children}

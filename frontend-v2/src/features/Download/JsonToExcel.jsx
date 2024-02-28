@@ -1,6 +1,9 @@
 import Button from "../../ui/Button.jsx";
 import * as xlsx from "xlsx/xlsx.mjs";
-import { getCurrentfileInfoFromLocal } from "../../utils/localStorageUtils.js";
+import {
+  getCurrentfileInfoFromLocal,
+  getFromLocalStorage,
+} from "../../utils/localStorageUtils.js";
 import FileFormatIcon from "../../ui/FileFormatIcon.jsx";
 
 //^ Function converts json string to excel file
@@ -15,18 +18,17 @@ const downloadAsExcel = (data) => {
   xlsx.writeFile(workbook, "DataSheet.xlsx");
 };
 
-function handleExcelClick(json) {
+function handleExcelClick() {
+  const cFile = getFromLocalStorage("current_file");
+  const json = cFile;
   downloadAsExcel(json);
   console.log("Excel file");
 }
 
 function JsonToExcel({ children }) {
-  const cFile = getCurrentfileInfoFromLocal();
-  const json = cFile.cFile;
-
   return (
     <FileFormatIcon
-      onClick={() => handleExcelClick(json)}
+      onClick={() => handleExcelClick()}
       fileformat="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
     >
       {children}

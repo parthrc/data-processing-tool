@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 import Header from "./Header.jsx";
 import Divider from "./Divider.jsx";
+import TableData from "./TableData.jsx";
 
 const StyledJsonTableContainer = styled.div`
   background-color: white;
@@ -27,11 +28,6 @@ const StyledHeaderRow = styled.th`
 `;
 
 const StyledTableRow = styled.tr``;
-
-const StyledTableData = styled.td`
-  padding: 0.3rem;
-  border: 1px solid white;
-`;
 
 const StyledNoFiles = styled.p`
   color: black;
@@ -79,7 +75,14 @@ const JsonTable = () => {
             <StyledTableRow key={index}>
               {/* Render table cells */}
               {headers.map((header) => (
-                <StyledTableData key={header}>{item[header]}</StyledTableData>
+                <TableData
+                  key={header}
+                  keyy={index}
+                  item={item}
+                  header={header}
+                >
+                  {item[header]}
+                </TableData>
               ))}
             </StyledTableRow>
           ))}

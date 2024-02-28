@@ -40,7 +40,6 @@ export const getCurrentfileInfoFromLocal = () => {
   const cFileName = getFromLocalStorage("current_file_name");
   const cFileKeys = getFromLocalStorage("current_file_keys");
   const cFileFormat = getFromLocalStorage("current_file_format");
-  console.log({ cFile, cFileName, cFileKeys, cFileFormat });
 
   return { cFile, cFileName, cFileKeys, cFileFormat };
 };
@@ -55,4 +54,10 @@ export const updateProcessLogInLS = (process_item) => {
     log = [...currLog, process_item];
   }
   saveToLocalStorage("current_process_log", log);
+};
+
+// Update current file body in localstorage
+// Update current file info in localstorage
+export const updateCurrentFileBodyToLocalStorage = (curr) => {
+  saveToLocalStorage("current_file", curr);
 };

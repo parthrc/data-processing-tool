@@ -39,7 +39,7 @@ const StyledHeader = styled.header`
   justify-content: center;
   align-items: center;
   color: aliceblue;
-
+  width: 100%;
   text-transform: uppercase;
 `;
 
